@@ -102,6 +102,7 @@ CREATE TABLE `ExamQuestion`(
     FOREIGN KEY ( QuestionID ) REFERENCES `Question`( QuestionID )
 );
 -- ===================================================
+
 INSERT INTO `Department` (DepartmentName) values ('sale');
 INSERT INTO `Department` (DepartmentName) values ('marketing');
 INSERT INTO `Department` (DepartmentName) values ('filenance');
