@@ -114,23 +114,23 @@ INSERT INTO `Position` (PositionName ) values ('Test');
 INSERT INTO `Position` (PositionName ) values ('Scrum Master');
 INSERT INTO `Position` (PositionName ) values ('PM');
 
-INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tapchicongsan123@gmail.com', 'phuong', 'nguyễn đức phương',  '1', '1', '2021-03-28');
-INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('bocongthuong123@gmail.com' , 'thanh' , 'phạm thị thanh',     '2', '2',	'2021-03-28');
-INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('botaichinh123@gmail.com'   , 'nam'  ,  'hoàng mạnh nam', 	  '3', '3', '2021-03-28');
-INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('bonongnghiep123@gmail.com',  'ngoc'  , 'vũ thị ngọc',		  '4', '4', '2021-03-28');
-INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('bogiaothong123@gmail.com' ,  'hung'  , 'trần mạnh hùng', 	  '5', '1',	'2021-03-28');
+INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tapchicongsan123@gmail.com', 'phuong', 'nguyễn đức phương',  '1', '1', '2020-03-16');
+INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('bocongthuong123@gmail.com' , 'thanh' , 'phạm thị thanh',     '2', '2',	'2020-04-21');
+INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('botaichinh123@gmail.com'   , 'nam'  ,  'hoàng mạnh nam', 	  '3', '3', '2020-03-28');
+INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('bonongnghiep123@gmail.com',  'ngoc'  , 'vũ thị ngọc',		  '4', '4', '2020-07-02');
+INSERT INTO `Account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('bogiaothong123@gmail.com' ,  'hung'  , 'trần mạnh hùng', 	  '5', '1',	'2020-11-07');
 
-INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('muahang', 	  '1', '2021-03-28');
-INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('banhang'	, 	  '2', '2021-03-28');
-INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('ketoan'	, 	  '3', '2021-03-28');
-INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('xuatnhapkhau', '4', '2021-03-28');
-INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('thitruong', 	  '5', '2021-03-28');
+INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('muahang', 	  '1', '2020-09-15');
+INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('banhang'	, 	  '2', '2020-10-10');
+INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('ketoan'	, 	  '3', '2020-10-20');
+INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('xuatnhapkhau', '4', '2020-12-18');
+INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('thitruong', 	  '5', '2021-01-20');
 
-INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('1' , '1', '2021-03-28');
-INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('2' , '2', '2021-03-28');
-INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('3' , '3', '2021-03-28');
-INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('4' , '4', '2021-03-28');
-INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('5' , '5', '2021-03-28');
+INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('1' , '1', '2020-09-15');
+INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('2' , '2', '2020-10-10');
+INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('3' , '3', '2020-10-20');
+INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('4' , '4', '2020-12-18');
+INSERT INTO `GroupAccount` ( GroupID, AccountID, JoinDate ) values ('5' , '5', '2021-01-20');
 
 INSERT INTO `TypeQuestion` ( TypeName ) values ('Essay');
 INSERT INTO `TypeQuestion` ( TypeName ) values ('Multiple-Choice');
@@ -147,11 +147,11 @@ INSERT INTO `Question` ( Content, CategoryID, TypeID, CreatorID, CreateDate	) va
 INSERT INTO `Question` ( Content, CategoryID, TypeID, CreatorID, CreateDate	) values ('Postman là gì', '4', '1',  '4', '2021-03-28');
 INSERT INTO `Question` ( Content, CategoryID, TypeID, CreatorID, CreateDate	) values ('Ruby là gì',	   '5', '1',  '5', '2021-03-28');
 
-INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là ngôn ngữ lập trình bậc cao', '1',	1	);
-INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một trang web',				 '2',	0	);
-INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một ngôn ngữ lập trình',	 '3',	1	);
-INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một ngôn ngữ bậc cao',		 '4',	0	);
-INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một loại đá quý',			 '5',	0	);
+INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là ngôn ngữ lập trình bậc cao', '1', 1);
+INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một trang web',				 '2', 0);
+INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một ngôn ngữ lập trình',	 '3', 1);
+INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một ngôn ngữ bậc cao',		 '4', 0)	;
+INSERT INTO `Answer` ( Content, QuestionID, isCorrect ) values ('là một loại đá quý',			 '5', 0);
 
 INSERT INTO `Exam` ( `Code`, Title, CategoryID,	Duration, CreatorID, CreateDate	) values (1, 'Đề thi Java',		'1',	'5',	'1',	'2021-03-28');
 INSERT INTO `Exam` ( `Code`, Title, CategoryID,	Duration, CreatorID, CreateDate	) values (2, 'Đề thi .NET',		'2',	'5',	'2',	'2021-03-28');
@@ -159,8 +159,8 @@ INSERT INTO `Exam` ( `Code`, Title, CategoryID,	Duration, CreatorID, CreateDate	
 INSERT INTO `Exam` ( `Code`, Title, CategoryID,	Duration, CreatorID, CreateDate	) values (4, 'Đề thi Postman',	'4',	'5',	'4',	'2021-03-28');
 INSERT INTO `Exam` ( `Code`, Title, CategoryID,	Duration, CreatorID, CreateDate	) values (5, 'Đề thi Ruby',		'5',	'5',	'5',	'2021-03-28');
 
-INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('1',	'1'	);
-INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('2',	'2'	);
-INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('3',	'3'	);
-INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('4',	'4'	);
-INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('5',	'5'	);
+INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('1',	'1');
+INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('2',	'2');
+INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('3',	'3');
+INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('4',	'4');
+INSERT INTO `ExamQuestion` ( ExamID, QuestionID	)  values ('5',	'5');
