@@ -41,7 +41,8 @@ ORDER BY CreateDate ASC
 LIMIT 5;
 
 -- Q10
-SELECT accountID, DepartmentID FROM `account` WHERE DepartmentID ='2;';
+SELECT accountID, DepartmentID 
+FROM `account` WHERE DepartmentID ='2;';
 
 -- Q11
 SELECT accountID, username 
