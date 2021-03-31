@@ -37,4 +37,28 @@ ORDER BY count(Q.QuestionID) ASC;
 SELECT EX.questionID, QE.Content as noidung, count(Ex.examID) as SL FROM `examquestion` as EX 
 JOIN `question` as QE ON QE.QuestionID = Ex.QuestionID
 GROUP BY Ex.QuestionID
+HAVING count(Ex.examID);
+
+-- Q8
+SELECT A.questionID, A.Content as CauHoi, count(A.answerID) as SL FROM `answer`as a 
+JOIN `question` as Q ON a.QuestionID = Q.QuestionID
+GROUP BY A.QuestionID
+ORDER BY Count(A.answerID) DESC
+LIMIT 1;
+
+-- Q9
+SELECT GR.groupID, count(GR.accountID) as SL FROM `groupaccount` as GR 
+JOIN `account` as AC ON AC.AccountID = GR.AccountID
+GROUP BY AC.AccountID
+HAVING count(GR.accountID)
+ORDER BY groupID ASC;
+
+-- Q10
+SELECT PositionName, count(a.AccountID) as SNV FROM `position`as p 
+JOIN `account` as a ON a.PositionID = p.PositionID
+GROUP BY p.PositionID
+ORDER BY count(a.AccountID) ASC
+LIMIT 1;
+
+
 
