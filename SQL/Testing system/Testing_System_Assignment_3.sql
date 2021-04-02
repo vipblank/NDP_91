@@ -8,15 +8,15 @@ FROM `department`
 WHERE DepartmentName LIKE 'sale';
 
 -- Q4
-SELECT * FROM `account`
-ORDER BY fullname ASC 
-LIMIT 1;
+SELECT * FROM `account` a 
+WHERE length(a.fullname) = (
+SELECT MAX(length(a.FullName))FROM `account` a
+);
 
 -- Q5
-SELECT * FROM `account` 
-WHERE DepartmentID = '3'
-ORDER BY fullname ASC
-LIMIT 1;
+SELECT * FROM `account` a 
+WHERE length(a.fullname) = (
+SELECT MAX(length(a.FullName))FROM `account` a ) AND DepartmentID = 1;
 
 -- Q6
 SELECT GroupName 
@@ -41,13 +41,12 @@ ORDER BY CreateDate ASC
 LIMIT 5;
 
 -- Q10
-SELECT accountID, DepartmentID 
-FROM `account` WHERE DepartmentID ='2;';
+SELECT count(AccountID) as SNV FROM `account` WHERE DepartmentID =2;
 
 -- Q11
-SELECT accountID, username 
+SELECT * 
 FROM `account` 
-WHERE Username LIKE 'T%';
+WHERE FullName LIKE 'l%n';
 
 -- Q12
 DELETE FROM `exam` WHERE CreateDate < '2019-12-20' ;
