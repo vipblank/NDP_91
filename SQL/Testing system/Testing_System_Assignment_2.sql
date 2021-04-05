@@ -17,9 +17,9 @@ CREATE TABLE `Position`(
 DROP TABLE IF EXISTS `Account`;
 CREATE TABLE `Account`(
 	AccountID		TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    Email	 		VARCHAR(50) NOT NULL UNIQUE KEY,
-    Username		VARCHAR(50) NOT NULL UNIQUE KEY,
-    FullName		NVARCHAR(50) NOT NULL,
+    Email	 		VARCHAR(50)  UNIQUE KEY,
+    Username		VARCHAR(50)  UNIQUE KEY,
+    FullName		NVARCHAR(50) ,
     DepartmentID	TINYINT UNSIGNED NOT NULL,
     PositionID		TINYINT UNSIGNED NOT NULL,
     CreateDate		DATETIME DEFAULT NOW(),
@@ -38,8 +38,8 @@ CREATE TABLE `Group`(
 
 DROP TABLE IF EXISTS `GroupAccount`;
 CREATE TABLE `GroupAccount`(
-	GroupID		TINYINT UNSIGNED NOT NULL,
-    AccountID	TINYINT UNSIGNED NOT NULL ,
+	GroupID		TINYINT UNSIGNED,
+    AccountID	TINYINT UNSIGNED,
     JoinDate 	DATETIME DEFAULT NOW(),
     PRIMARY KEY ( GroupID, AccountID ),
     FOREIGN KEY ( GroupID ) REFERENCES `Group`( GroupID ),
@@ -75,7 +75,7 @@ DROP TABLE IF EXISTS `Answer`;
 CREATE TABLE `Answer`(
 	AnswerID 	TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     Content	 	NVARCHAR(100) NOT NULL,
-    QuestionID	TINYINT UNSIGNED NOT NULL,
+    QuestionID	TINYINT UNSIGNED,
     isCorrect	BIT DEFAULT 1,
     FOREIGN KEY ( QuestionID ) REFERENCES `Question`( QuestionID )
 );
@@ -119,29 +119,29 @@ INSERT INTO `Position` (PositionName ) values ('Test');
 INSERT INTO `Position` (PositionName ) values ('Scrum Master');
 INSERT INTO `Position` (PositionName ) values ('PM');
 
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vucamnhung@gmail.com', 		'nhung83',  'vu cam nhung', 		1, 3, '2017-04-09');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('lehaiyen@gmail.com', 		'yen90', 	'le hai yen', 			3, 2, '2020-09-13');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('phamvantruong@gmail.com', 	'truong85', 'pham van tr', 			9, 2, '2018-01-23');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('dangthanhlam@gmail.com', 	'lam78',	 'dang thanh lam', 		7, 2, '2018-11-30');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('levannam@gmail.com',			'nam88', 	'le van nam', 			3, 4, '2019-06-16');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyenhuongly@gmail.com', 	'ly93',		 'nguyen huong ly',		6, 2, '2019-12-26');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('lethituyet@gmail.com', 		'tuyet92',	 'le thi tuyet', 		5, 2, '2017-08-27');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('trantrungkien@gmail.com',    'kien88', 	'tran trung kien', 		9, 3, '2017-08-08');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyennhungoc@gmail.com', 	'ngoc91', 	'nguyen nhu ngoc',  	9, 4, '2017-09-23');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vuvantrong@gmail.com',		'trong95',	 'vu van trong', 		10, 4, '2018-10-08');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('dinhvanmanh@gmail.com',		'manh85',	 'dinh van manh',	 	7, 3, '2021-01-02');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyenhuongngoc@gmail.com',	'ngoc84', 	'nguyen huong ngoc', 	3, 4, '2018-08-13');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('lethihuyentrang@gmail.com', 	'trang91', 	'le thi huyen trang', 	1, 4, '2017-09-21');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('leminhdung@gmail.com', 		'dung82', 	'le minh dung', 	 	3, 3, '2017-08-12');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('caovansang@gmail.com', 		'sang89', 	'cao van sang',			2, 3, '2020-11-08');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('dinhvannghia@gmail.com',		'nghia85',  'dinh van nghia', 	 	3, 1, '2020-04-30');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vuhoainam@gmail.com',		 'nam91', 	'vu hoai nam', 		 	3, 3, '2019-08-28');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tranminhduc@gmail.com', 		'duc89', 	'tran minh duc', 	 	2, 4, '2017-10-25');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tranvanchau@gmail.com', 		'chau86',   'tran van chau', 	 	3, 4, '2020-03-19');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vumanhtung.gmail.com', 		'tung85', 	'vu manh tung', 	 	6, 1, '2020-10-17');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('ngobakha@gmail.com', 		'kha92',	 'ngo ba kha', 		 	8, 1, '2018-03-21');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyenhaichau@gmail.com', 	'chau94',	 'nguyen hai chau',  	10, 2, '2017-12-22');
-INSERT INTO account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tranthanhhuyen@gmail.com', 'huyen85', 'tran thanh huyen', 		10, 4, '2018-01-18');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vucamnhung@gmail.com', 		'nhung83',  'vu cam nhung', 		1, 3, '2017-04-09');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('lehaiyen@gmail.com', 		'yen90', 	'le hai yen', 			3, 2, '2020-09-13');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('phamvantruong@gmail.com', 	'truong85', 'pham van tr', 			9, 2, '2018-01-23');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('dangthanhlam@gmail.com', 	'lam78',	 'dang thanh lam', 		7, 2, '2018-11-30');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('levannam@gmail.com',			'nam88', 	'le van nam', 			3, 4, '2019-06-16');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyenhuongly@gmail.com', 	'ly93',		 'nguyen huong ly',		6, 2, '2019-12-26');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('lethituyet@gmail.com', 		'tuyet92',	 'le thi tuyet', 		5, 2, '2017-08-27');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('trantrungkien@gmail.com',    'kien88', 	'tran trung kien', 		9, 3, '2017-08-08');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyennhungoc@gmail.com', 	'ngoc91', 	'nguyen nhu ngoc',  	9, 4, '2017-09-23');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vuvantrong@gmail.com',		'trong95',	 'vu van trong', 		10, 4, '2018-10-08');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('dinhvanmanh@gmail.com',		'manh85',	 'dinh van manh',	 	7, 3, '2021-01-02');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyenhuongngoc@gmail.com',	'ngoc84', 	'nguyen huong ngoc', 	3, 4, '2018-08-13');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('lethihuyentrang@gmail.com', 	'trang91', 	'le thi huyen trang', 	1, 4, '2017-09-21');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('leminhdung@gmail.com', 		'dung82', 	'le minh dung', 	 	3, 3, '2017-08-12');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('caovansang@gmail.com', 		'sang89', 	'cao van sang',			2, 3, '2020-11-08');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('dinhvannghia@gmail.com',		'nghia85',  'dinh van nghia', 	 	3, 1, '2020-04-30');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vuhoainam@gmail.com',		 'nam91', 	'vu hoai nam', 		 	3, 3, '2019-08-28');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tranminhduc@gmail.com', 		'duc89', 	'tran minh duc', 	 	2, 4, '2017-10-25');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tranvanchau@gmail.com', 		'chau86',   'tran van chau', 	 	3, 4, '2020-03-19');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('vumanhtung.gmail.com', 		'tung85', 	'vu manh tung', 	 	6, 1, '2020-10-17');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('ngobakha@gmail.com', 		'kha92',	 'ngo ba kha', 		 	8, 1, '2018-03-21');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('nguyenhaichau@gmail.com', 	'chau94',	 'nguyen hai chau',  	10, 2, '2017-12-22');
+INSERT INTO `account` (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values ('tranthanhhuyen@gmail.com', 'huyen85', 'tran thanh huyen', 		10, 4, '2018-01-18');
 
 
 INSERT INTO `Group` ( GroupName, CreatorID, CreateDate	) values ('muahang', 	  '1', '2020-09-15');
