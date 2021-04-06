@@ -109,8 +109,6 @@ HAVING S.OfficeID IS NULL ;
 DELETE FROM staff WHERE staffID = '9';
 
 -- Q11 : Hãy tạo 1 Procedure có đầu vào là tên quốc gia cần xóa thông tin để xóa tất cả các thông tin trên hệ thống liên quan đến quốc gia này và gửi lại cho anh ấy.
-DELETE FROM `national` WHERE NationalName = ?;
-
 DROP PROCEDURE IF EXISTS SP_GetnationalInformation;
 DELIMITER $$
 CREATE PROCEDURE SP_GetnationalInformation(IN in_NationalName VARCHAR(50))
@@ -126,15 +124,6 @@ CALL SP_GetnationalInformation ('VietNam');
 -- Q13 : Bạn hãy tạo trigger cho table Staff chỉ cho phép insert mỗi quốc gia có tối đa 10.000 nhân viên giúp anh ấy (có thể cấu hình số lượng nhân viên nhỏ hơn vd 11 nhân viên để Test).
 
 -- Q14 : Bạn hãy viết 1 Procedure để lấy ra tên trụ sở mà có số lượng nhân viên đang làm việc nhiều nhất.
-WITH CTE_GetAddress AS (
-	SELECT O.Address AS Diachi, count(S.staffID) AS SoNV FROM Office O
-	JOIN Staff S ON S.officeID = O.officeID
-	GROUP BY O.OfficeID)
-SELECT O.Address, count(S.staffID) FROM Office O
-JOIN Staff S ON S.officeID = O.officeID
-GROUP BY O.OfficeID
-HAVING count(S.staffID) = (SELECT MAX(SoNV) FROM CTE_GetAddress);
-
 DROP PROCEDURE IF EXISTS SP_GetAddressInformation;
 DELIMITER $$
 CREATE PROCEDURE SP_GetAddressInformation(IN in_Address VARCHAR(50))
@@ -151,5 +140,78 @@ HAVING count(S.staffID) = (SELECT MAX(SoNV) FROM CTE_GetAddress);
 END$$
 DELIMITER 
 CALL SP_GetAddressInformation ('1');
+
+-- Q15 : Bạn hãy viết 1 Function để khi nhập vào thông tin Email của nhân viên thì sẽ trả ra thông tin đầy đủ của nhân viên đó.
+
+-- Q16 : Bạn hãy viết 1 Trigger để khi thực hiện cập nhật thông tin về trụ sở làm việc của nhân viên đó thì hệ thống sẽ tự động lưu lại trụ sở cũ của nhân viên vào 1 bảng khác có tên Log_Office để Mark có thể xem lại khi cần thiết.
+
+-- Q17 : hãy tạo Trigger để ngăn người nhập liệu nhập vào quốc gia thứ 101
+
+-- Q18 : Thống kê mỗi xem mỗi nước(National) đang có bao nhiêu nhân viên đang làm việc.
+SELECT O.nationalID, N.nationalName, count(S.staffID) FROM `office` O
+JOIN staff S ON S.officeID = O.officeID
+JOIN `national` N ON N.nationalID = O.nationalID
+Group BY O.nationalID;
+
+-- Q19 : Viết Procedure để thống kê mỗi xem mỗi nước(National) đang có bao nhiêu nhân viên đang làm việc, với đầu vào là tên nước.
+SELECT A.AccountID, A.Username, A.FullName, D.DepartmentName, A.Email FROM `account` A
+JOIN department D ON D.DepartmentID = A.DepartmentID;
+
+DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
+DELIMITER $$
+CREATE PROCEDURE SP_GetStaffInformation(IN in_nationalName VARCHAR(50))
+BEGIN
+	SELECT O.nationalID, N.nationalName AS tennuoc, count(S.staffID) as SoNV FROM `office` O
+	JOIN staff S ON S.officeID = O.officeID
+	JOIN `national` N ON N.nationalID = O.nationalID
+	Group BY N.nationalName
+    HAVING N.nationalName LIKE 'in_nationalName';
+END$$
+DELIMITER 
+CALL SP_GetStaffInformation ('My');
+
+-- Q20 : Thống kê mỗi xem trong cùng 1 trụ sở (Office) đang có bao nhiêu employee đang làm việc.
+select O.OfficeID, O.Address, count(S.staffID) from office O
+JOIN staff S ON S.officeID = O.OfficeID
+Group BY O.officeID;
+
+-- Q21 : Viết Procedure để thống kê mỗi xem trong cùng 1 trụ sở (Office) đang có bao nhiêu employee đang làm việc đầu vào là ID của trụ sở.
+DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
+DELIMITER $$
+CREATE PROCEDURE SP_GetEmployee(IN in_OfficeID TINYINT)
+BEGIN
+	select O.OfficeID, O.Address, count(S.staffID) from office O
+	JOIN staff S ON S.officeID = O.OfficeID
+	Group BY O.officeID
+    HAVING O.OfficeID = in_OfficeID;
+END$$
+DELIMITER 
+CALL SP_GetEmployee ('3');
+
+-- Q22 : Viết Procedure để lấy ra tên quốc gia đang có nhiều nhân viên nhất
+DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
+DELIMITER $$
+CREATE PROCEDURE SP_GetNV(IN in_nationalName VARCHAR(50))
+BEGIN
+	WITH CTE_GetStaff AS (
+	SELECT O.nationalID, N.nationalName AS tennuoc, count(S.staffID) as SoNV FROM `office` O
+	JOIN staff S ON S.officeID = O.officeID
+	JOIN `national` N ON N.nationalID = O.nationalID
+	Group BY N.nationalName)
+SELECT O.nationalID, N.nationalName AS tennuoc,O.Address AS diachi, count(S.staffID) as SoNV FROM `office` O
+JOIN staff S ON S.officeID = O.officeID
+JOIN `national` N ON N.nationalID = O.nationalID
+Group BY N.nationalName 
+HAVING count(S.staffID) = (SELECT MAX(SoNV) FROM CTE_GetStaff);
+END$$
+DELIMITER 
+CALL SP_GetNV ('1');
+
+-- Q23 : Thống kê mỗi country có bao nhiêu employee đang làm việc.
+-- Q24 : Bạn hãy cấu hình lại các bảng và ràng buộc giữ liệu sao cho khi xóa 1 trụ sở làm việc (Office) thì tất cả dữ liệu liên quan đến trụ sở này sẽ chuyển về Null
+ FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE SET NULL;
+
+-- Q25 : Bạn hãy cấu hình lại các bảng và ràng buộc giữ liệu sao cho khi xóa 1 trụ sở làm việc (Office) thì tất cả dữ liệu liên quan đến trụ sở này sẽ bị xóa hết.
+ FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE CASCADE;
 
 
