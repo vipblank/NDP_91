@@ -48,9 +48,9 @@ VALUES								('VN1',	 		 '1'),
                                     ('Nga4',		 '4'),
                                     ('TrungQuoc5',	 '5'),
                                     ('NhatBan6',	 '6'),
-                                    ( 'Anh7',	 	 '7'),
+                                    ('Anh7',	 	 '7'),
                                     ('India8',		 '8'),
-                                    ( 'HanQuoc9',	 '9'),
+                                    ('HanQuoc9',	 '9'),
                                     ('ThaiLan10',	 '10');
                                     
 INSERT INTO `facebook_db`.`staff` (`FirstName`,  `LastName`, 	`Email`, 				`OfficeID`) 
@@ -63,8 +63,8 @@ VALUES 							('nguyenduc',	 'phuong', 'nguyenducphuong@gmail.com', 	'1'),
                                 ('nguyenhuong',	 'ly', 		'nguyenhuongly@gmail.com', 		'7'),
                                 ('lethi',	 	 'tuyet', 	'lethituyet@gmail.com', 		'8'),
                                 ('trantrung',	 'kien', 	'trantrungkien@gmail.com', 		'9'),
-                                ('vuvan',	 	'trong', 	'vuvantrong@gmail.com', 		'1'),
-								('nguyenquang', 'dao', 		'nguyenquangdao@gmail.com', 	'1');                             
+                                ('vuvan',	 	 'trong', 	'vuvantrong@gmail.com', 		'1');
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`) VALUES ('nguyenquang', 'dao', 'nguyenquangdao@gmail.com');
 -- ===================================================
 
 -- Q3 : lấy dữ liệu tất cả nhân viên làm việc tại Việt Nam
@@ -85,13 +85,13 @@ SELECT S.StaffID, S.Email, O.Address AS diachi FROM office O
     WHERE S.email LIKE 'nguyenquangdao@gmail.com';
 
 -- Q6 : Bạn hãy tìm xem trên hệ thống có quốc gia nào có thông tin trên hệ thống nhưng không có nhân viên nào đang làm việc.  
-SELECT S.StaffID, S.FirstName, S.LastName, O.Address  FROM office O
+SELECT S.StaffID, O.Address  FROM office O
 LEFT JOIN staff S ON S.OfficeID = O.OfficeID
 GROUP BY O.OfficeID
-HAVING S.FirstName IS NULL;
+HAVING S.StaffID IS NULL;
 
 -- Q7 : Thống kê xem trên thế giới có bao nhiêu quốc gia mà FB đang hoạt động sử dụng tiếng Anh làm ngôn ngữ chính.
-SELECT N.*, count(N.LanguageMain) FROM `national` N
+SELECT N.LanguageMain, count(N.NationalName) AS SoNuoc FROM `national` N
 WHERE N.LanguageMain LIKE 'T.Anh';
 
 -- Q8 : Viết lệnh để lấy ra thông tin nhân viên có tên (First_Name) có 8 ký tự, bắt đầu bằng chữ N và kết thúc bằng chữ C.
@@ -153,9 +153,6 @@ JOIN `national` N ON N.nationalID = O.nationalID
 Group BY O.nationalID;
 
 -- Q19 : Viết Procedure để thống kê mỗi xem mỗi nước(National) đang có bao nhiêu nhân viên đang làm việc, với đầu vào là tên nước.
-SELECT A.AccountID, A.Username, A.FullName, D.DepartmentName, A.Email FROM `account` A
-JOIN department D ON D.DepartmentID = A.DepartmentID;
-
 DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
 DELIMITER $$
 CREATE PROCEDURE SP_GetStaffInformation(IN in_nationalName VARCHAR(50))
@@ -164,7 +161,7 @@ BEGIN
 	JOIN staff S ON S.officeID = O.officeID
 	JOIN `national` N ON N.nationalID = O.nationalID
 	Group BY N.nationalName
-    HAVING N.nationalName LIKE 'in_nationalName';
+    HAVING N.nationalName LIKE ('in_nationalName');
 END$$
 DELIMITER 
 CALL SP_GetStaffInformation ('My');
@@ -185,7 +182,7 @@ BEGIN
     HAVING O.OfficeID = in_OfficeID;
 END$$
 DELIMITER 
-CALL SP_GetEmployee ('3');
+CALL SP_GetEmployee ('1');
 
 -- Q22 : Viết Procedure để lấy ra tên quốc gia đang có nhiều nhân viên nhất
 DROP PROCEDURE IF EXISTS SP_GetStaffInformation;

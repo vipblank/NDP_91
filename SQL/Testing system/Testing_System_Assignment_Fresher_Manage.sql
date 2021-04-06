@@ -17,14 +17,14 @@ CREATE TABLE `Trainee`(
 
 -- ===================================================
 INSERT INTO `fresher_manage`.`trainee` (`Full_Name`, 			`BirthDate`, `Gender`, `ETIQ`, `ETGmath`, `ETEnglish`, `TrainingClass`, `EvaluationNotes`) 
-VALUES 									('nguyen duc phuong', 	'1998-03-20', 'MALE', 	'15',	'17', 		'15', 		'VTI002', 		'DHKHTN'),
-										('tran thi mai', 		'1999-10-20', 'FEMALE', '16', 	'12', 		'11', 		'VTI001', 		'DHKHTN'),
-                                        ('doan phuong ha', 		'1999-03-15', 'FEMALE', '17', 	'14', 		'12', 		'VTI003', 		'DHKTQD'),
-                                        ('tran thanh lam',		'2001-08-20', 'MALE', 	'18', 	'15',		'19', 		'VTI002', 		'DHKTQD'),
-                                        ('doan van ngoc', 		'1997-03-30', 'MALE', 	'19', 	'16',		'18', 		'VTI001', 		'DHBKHN'),
-                                        ('nguyen huong ly', 	'2000-04-10', 'FEMALE', '20', 	'16', 		'14', 		'VTI003', 		'DHBKHN'),
-                                        ('nguyen thi bich diep','1999-11-10', 'FEMALE', '14',	'17', 		'14', 		'VTI003', 		'DHGTVT'),
-                                        ('tran quang tung', 	'1999-05-29', 'MALE', 	 '12',	'12', 		'14', 		'VTI001', 		'DHGTVT'),
+VALUES 									('nguyen duc phuong', 	'1998-03-20', 'MALE', 	'15',	'17', 		'30', 		'VTI002', 		'DHKHTN'),
+										('tran thi mai', 		'1999-10-20', 'FEMALE', '16', 	'12', 		'33', 		'VTI001', 		'DHKHTN'),
+                                        ('doan phuong ha', 		'1999-03-15', 'FEMALE', '17', 	'14', 		'40', 		'VTI003', 		'DHKTQD'),
+                                        ('tran thanh lam',		'2001-08-20', 'MALE', 	'18', 	'15',		'44', 		'VTI002', 		'DHKTQD'),
+                                        ('doan van ngoc', 		'1997-03-30', 'MALE', 	'19', 	'16',		'55', 		'VTI001', 		'DHBKHN'),
+                                        ('nguyen huong ly', 	'2000-04-10', 'FEMALE', '20', 	'16', 		'24', 		'VTI003', 		'DHBKHN'),
+                                        ('nguyen thi bich diep','1999-11-10', 'FEMALE', '14',	'17', 		'46', 		'VTI003', 		'DHGTVT'),
+                                        ('tran quang tung', 	'1999-05-29', 'MALE', 	 '12',	'12', 		'22', 		'VTI001', 		'DHGTVT'),
                                         ('tran thi yen', 		'1997-08-27', 'FEMALE',  '13',	'18', 		'14', 		'VTI002', 		'DHKHXH'),
                                         ('lai thi uyen', 		'1998-02-13', 'FEMALE',  '15',	'16', 		'14', 		'VTI001', 		'DHKHXH');
                                         
@@ -43,7 +43,6 @@ SELECT * FROM `Trainee` WHERE full_name LIKE "_R%";
 SELECT * FROM `trainee`
 WHERE length(full_name) = 12 AND full_name LIKE '%N';
 	
-
 -- Q8
 SELECT DISTINCT Full_name FROM `Trainee`;
 

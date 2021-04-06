@@ -46,5 +46,3 @@ SELECT @typeID;
 -- Q5 : Sử dụng store ở question 4 để tìm ra tên của type question
 
 -- Q6 : Viết 1 store cho phép người dùng nhập vào 1 chuỗi và trả về group có tên chuỗi của người dùng nhập vào hoặc trả về user có username chứa chuỗi của người dùng nhập vào
-
--- Q7 : 
