@@ -63,8 +63,8 @@ VALUES 							('nguyenduc',	 'phuong', 'nguyenducphuong@gmail.com', 	'1'),
                                 ('nguyenhuong',	 'ly', 		'nguyenhuongly@gmail.com', 		'7'),
                                 ('lethi',	 	 'tuyet', 	'lethituyet@gmail.com', 		'8'),
                                 ('trantrung',	 'kien', 	'trantrungkien@gmail.com', 		'9'),
-                                ('vuvan',	 	'trong', 	'vuvantrong@gmail.com', 		'1');
-                                
+                                ('vuvan',	 	'trong', 	'vuvantrong@gmail.com', 		'1'),
+								('nguyenquang', 'dao', 		'nguyenquangdao@gmail.com', 	'1');                             
 -- ===================================================
 
 -- Q3 : lấy dữ liệu tất cả nhân viên làm việc tại Việt Nam
@@ -74,20 +74,19 @@ GROUP BY O.Address
 HAVING Address LIKE "VN1";
 
 -- Q4 : Lấy ra ID, FullName, Email, National của mỗi nhân viên.
-CREATE OR REPLACE VIEW nhanvien AS 
-	SELECT S.StaffID, S.FirstName, S.LastName, O.nationalID, S.Email FROM Staff S 
-	INNER JOIN Office O ON O.OfficeID = S.OfficeID;
-    SELECT NV.StaffID, NV.FirstName, NV.LastName, NV.Email, N.NationalName  FROM nhanvien NV
-    JOIN `National` N ON N.NationalID = NV.NationalID ;
+	SELECT S.StaffID, CONCAT(S.FirstName, S.LastName) AS FullName, S.Email, N.nationalName AS QuocGia FROM office O 
+	INNER JOIN staff S ON S.OfficeID = O.OfficeID
+	INNER JOIN `national` N ON N.nationalID = O.nationalID;
     
--- Q5 : Lấy ra tên nước mà nhân viên có Email: "daonq@viettel.com.vn" đang làm việc"
-SELECT N.NationalName, NV.Email FROM nhanvien NV
-JOIN `National` N ON N.NationalID = NV.NationalID
-WHERE NV.email LIKE 'daonq@viettel.com.vn';
+-- Q5 : Lấy ra tên nước mà nhân viên có Email: "nguyenquangdao@gmail.com" đang làm việc"
+SELECT S.StaffID, S.Email, O.Address AS diachi FROM office O 
+	INNER JOIN staff S ON S.OfficeID = O.OfficeID
+	INNER JOIN `national` N ON N.nationalID = O.nationalID
+    WHERE S.email LIKE 'nguyenquangdao@gmail.com';
 
 -- Q6 : Bạn hãy tìm xem trên hệ thống có quốc gia nào có thông tin trên hệ thống nhưng không có nhân viên nào đang làm việc.  
 SELECT S.StaffID, S.FirstName, S.LastName, O.Address  FROM office O
-RIGHT JOIN staff S ON S.OfficeID = O.OfficeID
+LEFT JOIN staff S ON S.OfficeID = O.OfficeID
 GROUP BY O.OfficeID
 HAVING S.FirstName IS NULL;
 
