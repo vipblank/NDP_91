@@ -207,7 +207,6 @@ END$$
 DELIMITER 
 CALL SP_GetNV ('1');
 
--- Q23 : Thống kê mỗi country có bao nhiêu employee đang làm việc.
 -- Q24 : Bạn hãy cấu hình lại các bảng và ràng buộc giữ liệu sao cho khi xóa 1 trụ sở làm việc (Office) thì tất cả dữ liệu liên quan đến trụ sở này sẽ chuyển về Null
  FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE SET NULL;
 
