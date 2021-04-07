@@ -53,36 +53,43 @@ VALUES								('VN1',	 		 '1'),
                                     ('HanQuoc9',	 '9'),
                                     ('ThaiLan10',	 '10');
                                     
-INSERT INTO `facebook_db`.`staff` (`FirstName`,  `LastName`, 	`Email`, 				`OfficeID`) 
-VALUES 							('nguyenduc',	 'phuong', 'nguyenducphuong@gmail.com', 	'1'),
-								('vucam',	 	 'nhung',  'vucamnhung@gmail.com', 			'2'),
-                                ('lehai',	 	 'yen',		'lehaiyen@gmail.com', 			'3'),
-                                ('phamvan',	 	'truong', 	'phamvantruong@gmail.com', 		'4'),
-                                ('dangthanh',	 'lam', 	'dangthanhlam@gmail.com', 		'5'),
-                                ('levan',		 'nam', 	'levannam@gmail.com', 			'6'),
-                                ('nguyenhuong',	 'ly', 		'nguyenhuongly@gmail.com', 		'7'),
-                                ('lethi',	 	 'tuyet', 	'lethituyet@gmail.com', 		'8'),
-                                ('trantrung',	 'kien', 	'trantrungkien@gmail.com', 		'9'),
-                                ('vuvan',	 	 'trong', 	'vuvantrong@gmail.com', 		'1');
-INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`) VALUES ('nguyenquang', 'dao', 'nguyenquangdao@gmail.com');
+INSERT INTO `facebook_db`.`staff` (`FirstName`,  `LastName`, 	      `Email`, 					`OfficeID`) 
+VALUES 							('FirstName1',	 'LastName1',	'FirstName1LastName1@gmail.com', 	'1'),
+								('FirstName2',	 'LastName2',   'FirstName2LastName2@gmail.com', 	'2'),
+                                ('FirstName3',	 'LastName3',	'FirstName3LastName3@gmail.com', 	'3'),
+                                ('FirstName4',	 'LastName4', 	'FirstName4LastName4@gmail.com', 	'4'),
+                                ('FirstName5',	 'LastName5', 	'FirstName5LastName5@gmail.com', 	'5'),
+                                ('FirstName6',	 'LastName6', 	'FirstName6LastName6@gmail.com', 	'6'),
+                                ('FirstName7',	 'LastName7', 	'FirstName7LastName7@gmail.com',	'7'),
+                                ('FirstName8',	 'LastName8', 	'FirstName8LastName8@gmail.com', 	'1');
+                                
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName10', 'LastName10', 'FirstName10LastName10@gmail.com',	'1'	);
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName11', 'LastName11', 'FirstName11LastName11@gmail.com',	'1' );
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName12', 'LastName12', 'FirstName12LastName12@gmail.com',	'1'	);
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName13', 'LastName13', 'FirstName13LastName13@gmail.com',	'1'	);
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName14', 'LastName14', 'FirstName14LastName14@gmail.com',	'1'	);
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName15', 'LastName15', 'FirstName15LastName15@gmail.com',	'1'	);
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName16', 'LastName16', 'FirstName16LastName16@gmail.com',	'1'	);
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) VALUES ('FirstName17', 'LastName17', 'FirstName17LastName17@gmail.com',	'1'	);
 -- ===================================================
 
 -- Q3 : lấy dữ liệu tất cả nhân viên làm việc tại Việt Nam
-SELECT S.*, O.Address FROM `staff` S 
+SELECT S.*, N.NationalName FROM `staff` S 
 INNER JOIN `office` O ON S.OfficeID = O.OfficeID
-GROUP BY O.Address
-HAVING Address LIKE "VN1";
+INNER JOIN `national` N ON N.NationalID = O.NationalID
+GROUP BY NationalName
+HAVING N.NationalName LIKE "VietNam";
 
 -- Q4 : Lấy ra ID, FullName, Email, National của mỗi nhân viên.
 	SELECT S.StaffID, CONCAT(S.FirstName, S.LastName) AS FullName, S.Email, N.nationalName AS QuocGia FROM office O 
 	INNER JOIN staff S ON S.OfficeID = O.OfficeID
 	INNER JOIN `national` N ON N.nationalID = O.nationalID;
     
--- Q5 : Lấy ra tên nước mà nhân viên có Email: "nguyenquangdao@gmail.com" đang làm việc"
-SELECT S.StaffID, S.Email, O.Address AS diachi FROM office O 
+-- Q5 : Lấy ra tên nước mà nhân viên có Email: "FirstName1LastName1@gmail.com" đang làm việc"
+SELECT S.StaffID, S.Email, N.nationalName AS d FROM office O 
 	INNER JOIN staff S ON S.OfficeID = O.OfficeID
 	INNER JOIN `national` N ON N.nationalID = O.nationalID
-    WHERE S.email LIKE 'nguyenquangdao@gmail.com';
+    WHERE S.email LIKE 'FirstName1LastName1@gmail.com';
 
 -- Q6 : Bạn hãy tìm xem trên hệ thống có quốc gia nào có thông tin trên hệ thống nhưng không có nhân viên nào đang làm việc.  
 SELECT S.StaffID, O.Address  FROM office O
@@ -99,6 +106,7 @@ SELECT * FROM Staff
 WHERE FirstName LIKE 'N%C';
 
 -- Q9 : Bạn hãy tìm trên hệ thống xem có nhân viên nào đang làm việc nhưng do nhập khi nhập liệu bị lỗi mà nhân viên đó vẫn chưa cho thông tin về trụ sở làm việc(Office).
+UPDATE `facebook_db`.`staff` SET `OfficeID` = NULL WHERE (`StaffID` = '7');
 SELECT S.* FROM office O
 RIGHT JOIN staff S ON O.OfficeID = S.OfficeID
 GRoup BY S.OfficeID
@@ -120,7 +128,29 @@ CALL SP_GetnationalInformation ('VietNam');
 
 -- Q12 : viết cho anh ấy 1 Function để a ấy có thể lấy dữ liệu này 1 cách nhanh chóng.
 
--- Q13 : Bạn hãy tạo trigger cho table Staff chỉ cho phép insert mỗi quốc gia có tối đa 10.000 nhân viên giúp anh ấy (có thể cấu hình số lượng nhân viên nhỏ hơn vd 11 nhân viên để Test).
+-- Q13 : Bạn hãy tạo trigger cho table Staff chỉ cho phép insert mỗi quốc gia có tối đa 10.000 nhân viên giúp anh ấy (có thể cấu hình số lượng nhân viên nhỏ hơn vd 10 nhân viên để Test).
+DROP TRIGGER IF EXISTS Trg_BfinsertStf;
+DELIMITER $$
+	CREATE TRIGGER Trg_BfinsertStf
+    BEFORE INSERT ON `staff`
+    FOR EACH ROW
+    BEGIN		
+			DECLARE V_countStaffID TINYINT;
+            DECLARE V_nationalID TINYINT;
+            SELECT O.NationalID INTO V_nationalID FROM `office`O 
+			WHERE NEW.OfficeID = O.OfficeID;
+			SELECT count(S.staffID) INTO V_countStaffID FROM `staff` S
+			JOIN office O ON O.OfficeID = S.OfficeID
+            JOIN `national` N ON N.NationalID = O.NationalID
+            WHERE V_nationalID = N.nationalID;
+            IF (V_countStaffID >'5') THEN
+            SIGNAL SQLSTATE '12345'
+			SET MESSAGE_TEXT = 'Khong the nhap';
+            END IF;
+    END$$
+DELIMITER ;
+INSERT INTO `staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) 
+VALUES 		('FirstName17', 'LastName17', 'FirstName17LastName17@gmail.com', '1');
 
 -- Q14 : Bạn hãy viết 1 Procedure để lấy ra tên trụ sở mà có số lượng nhân viên đang làm việc nhiều nhất.
 DROP PROCEDURE IF EXISTS SP_GetAddressInformation;
@@ -143,8 +173,46 @@ CALL SP_GetAddressInformation ('1');
 -- Q15 : Bạn hãy viết 1 Function để khi nhập vào thông tin Email của nhân viên thì sẽ trả ra thông tin đầy đủ của nhân viên đó.
 
 -- Q16 : Bạn hãy viết 1 Trigger để khi thực hiện cập nhật thông tin về trụ sở làm việc của nhân viên đó thì hệ thống sẽ tự động lưu lại trụ sở cũ của nhân viên vào 1 bảng khác có tên Log_Office để Mark có thể xem lại khi cần thiết.
+	DROP TABLE IF EXISTS `log_office`;
+	CREATE TABLE `facebook_db`.`log_office` (
+	  `Id` TINYINT AUTO_INCREMENT,
+	  `Email` VARCHAR(45) NOT NULL,
+	  `OldOfficeName` VARCHAR(50) NOT NULL,
+	  `ChageDate` DATETIME NOT NULL,
+	  PRIMARY KEY (`Id`));
+  
+DROP TRIGGER IF EXISTS Trg_BfupdateStf;
+DELIMITER $$
+	CREATE TRIGGER Trg_BfupdateStf
+    AFTER UPDATE ON `staff`
+    FOR EACH ROW
+    BEGIN		
+		DECLARE Address_OLD VARCHAR(50); 
+        SELECT O.address INTO Address_OLD FROM office O WHERE O.OfficeID = OLD.OfficeID;
+		INSERT INTO `log_office` (`Email`, `OldOfficeName`, `ChageDate`) 
+        VALUES 						(OLD.email, Address_OLD, now()); 
+    END$$
+DELIMITER ;
+UPDATE `facebook_db`.`staff` SET `OfficeID` = '5' WHERE (`StaffID` = '14');
 
--- Q17 : hãy tạo Trigger để ngăn người nhập liệu nhập vào quốc gia thứ 101
+-- Q17 : hãy tạo Trigger để ngăn người nhập liệu nhập vào quốc gia thứ 10
+DROP TRIGGER IF EXISTS Trg_BfinsertNational;
+DELIMITER $$
+	CREATE TRIGGER Trg_BfinsertNational
+    BEFORE INSERT ON `staff`
+    FOR EACH ROW
+    BEGIN	
+		DECLARE V_nationalID TINYINT;
+        SELECT O.nationalID INTO V_nationalID FROM office O
+        WHERE NEW.OfficeID = O.OfficeID;
+		IF (V_nationalID = '10') THEN
+			SIGNAL SQLSTATE '12345'
+			SET MESSAGE_TEXT = 'Khong the nhap';
+		END IF;
+    END$$
+DELIMITER ;
+INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) 
+VALUES 				('FirstName18', 'LastName18', 'FirstName18LastName18@gmail.com', '10');
 
 -- Q18 : Thống kê mỗi xem mỗi nước(National) đang có bao nhiêu nhân viên đang làm việc.
 SELECT O.nationalID, N.nationalName, count(S.staffID) FROM `office` O
@@ -157,14 +225,13 @@ DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
 DELIMITER $$
 CREATE PROCEDURE SP_GetStaffInformation(IN in_nationalName VARCHAR(50))
 BEGIN
-	SELECT O.nationalID, N.nationalName AS tennuoc, count(S.staffID) as SoNV FROM `office` O
+	SELECT N.nationalID, N.nationalName AS tennuoc, count(S.staffID) as SoNV FROM `office` O
 	JOIN staff S ON S.officeID = O.officeID
 	JOIN `national` N ON N.nationalID = O.nationalID
-	Group BY N.nationalName
-    HAVING N.nationalName LIKE ('in_nationalName');
+    WHERE N.nationalName LIKE 'in_nationalName';
 END$$
 DELIMITER 
-CALL SP_GetStaffInformation ('My');
+CALL SP_GetStaffInformation ('VietNam');
 
 -- Q20 : Thống kê mỗi xem trong cùng 1 trụ sở (Office) đang có bao nhiêu employee đang làm việc.
 select O.OfficeID, O.Address, count(S.staffID) from office O
@@ -182,12 +249,12 @@ BEGIN
     HAVING O.OfficeID = in_OfficeID;
 END$$
 DELIMITER 
-CALL SP_GetEmployee ('1');
+CALL SP_GetEmployee ('2');
 
 -- Q22 : Viết Procedure để lấy ra tên quốc gia đang có nhiều nhân viên nhất
 DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
 DELIMITER $$
-CREATE PROCEDURE SP_GetNV(IN in_nationalName VARCHAR(50))
+CREATE PROCEDURE SP_GetNV()
 BEGIN
 	WITH CTE_GetStaff AS (
 	SELECT O.nationalID, N.nationalName AS tennuoc, count(S.staffID) as SoNV FROM `office` O
@@ -201,7 +268,7 @@ Group BY N.nationalName
 HAVING count(S.staffID) = (SELECT MAX(SoNV) FROM CTE_GetStaff);
 END$$
 DELIMITER 
-CALL SP_GetNV ('1');
+CALL SP_GetNV ();
 
 -- Q24 : Bạn hãy cấu hình lại các bảng và ràng buộc giữ liệu sao cho khi xóa 1 trụ sở làm việc (Office) thì tất cả dữ liệu liên quan đến trụ sở này sẽ chuyển về Null
  FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE SET NULL;

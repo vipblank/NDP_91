@@ -23,8 +23,8 @@ CREATE TABLE `Account`(
     DepartmentID	TINYINT UNSIGNED NOT NULL,
     PositionID		TINYINT UNSIGNED NOT NULL,
     CreateDate		DATETIME DEFAULT NOW(),
-    FOREIGN KEY ( PositionID ) REFERENCES `Position`( PositionID ),
-    FOREIGN KEY ( DepartmentID ) REFERENCES `Department`( DepartmentID )
+    FOREIGN KEY ( PositionID ) REFERENCES `Position`( PositionID ) ON DELETE CASCADE,
+    FOREIGN KEY ( DepartmentID ) REFERENCES `Department`( DepartmentID ) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Group`;
@@ -33,7 +33,7 @@ CREATE TABLE `Group`(
     GroupName	VARCHAR(50) NOT NULL UNIQUE KEY,
     CreatorID	TINYINT UNSIGNED ,
     CreateDate	DATETIME DEFAULT NOW(),
-    FOREIGN KEY ( CreatorID ) REFERENCES `Account`( AccountID )
+    FOREIGN KEY ( CreatorID ) REFERENCES `Account`( AccountID ) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `GroupAccount`;
@@ -42,8 +42,8 @@ CREATE TABLE `GroupAccount`(
     AccountID	TINYINT UNSIGNED,
     JoinDate 	DATETIME DEFAULT NOW(),
     PRIMARY KEY ( GroupID, AccountID ),
-    FOREIGN KEY ( GroupID ) REFERENCES `Group`( GroupID ),
-    FOREIGN KEY ( AccountID ) REFERENCES `Account`( AccountID )
+    FOREIGN KEY ( GroupID ) REFERENCES `Group`( GroupID ) ON DELETE CASCADE, 
+    FOREIGN KEY ( AccountID ) REFERENCES `Account`( AccountID ) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `TypeQuestion`;
@@ -66,9 +66,9 @@ CREATE TABLE `Question`(
     TypeID		TINYINT UNSIGNED NOT NULL,
     CreatorID 	TINYINT UNSIGNED NOT NULL,
     CreateDate 	DATETIME DEFAULT NOW(),
-    FOREIGN KEY ( CategoryID ) REFERENCES `CategoryQuestion`( CategoryID ),
-    FOREIGN KEY ( TypeID ) REFERENCES `TypeQuestion`( TypeID ),
-    FOREIGN KEY ( CreatorID ) REFERENCES `Account`( AccountID )
+    FOREIGN KEY ( CategoryID ) REFERENCES `CategoryQuestion`( CategoryID ) ON DELETE CASCADE,
+    FOREIGN KEY ( TypeID ) REFERENCES `TypeQuestion`( TypeID ) ON DELETE CASCADE,
+    FOREIGN KEY ( CreatorID ) REFERENCES `Account`( AccountID ) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Answer`;
@@ -77,7 +77,7 @@ CREATE TABLE `Answer`(
     Content	 	NVARCHAR(100) NOT NULL,
     QuestionID	TINYINT UNSIGNED,
     isCorrect	BIT DEFAULT 1,
-    FOREIGN KEY ( QuestionID ) REFERENCES `Question`( QuestionID )
+    FOREIGN KEY ( QuestionID ) REFERENCES `Question`( QuestionID ) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Exam`;
@@ -89,8 +89,8 @@ CREATE TABLE `Exam`(
     Duration 	TINYINT UNSIGNED NOT NULL,
     CreatorID 	TINYINT UNSIGNED NOT NULL,
     CreateDate	DATETIME DEFAULT NOW(),
-    FOREIGN KEY ( CategoryID ) REFERENCES `CategoryQuestion`( CategoryID ),
-    FOREIGN KEY ( CreatorID ) REFERENCES `Account`( AccountID )
+    FOREIGN KEY ( CategoryID ) REFERENCES `CategoryQuestion`( CategoryID ) ON DELETE CASCADE,
+    FOREIGN KEY ( CreatorID ) REFERENCES `Account`( AccountID ) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `ExamQuestion`;
@@ -98,8 +98,8 @@ CREATE TABLE `ExamQuestion`(
 	ExamID 		TINYINT UNSIGNED NOT NULL,
     QuestionID 	TINYINT UNSIGNED NOT NULL,
     PRIMARY KEY ( ExamID, QuestionID ),
-    FOREIGN KEY ( ExamID ) REFERENCES `Exam`( ExamID ),
-    FOREIGN KEY ( QuestionID ) REFERENCES `Question`( QuestionID )
+    FOREIGN KEY ( ExamID ) REFERENCES `Exam`( ExamID ) ON DELETE CASCADE,
+    FOREIGN KEY ( QuestionID ) REFERENCES `Question`( QuestionID ) ON DELETE CASCADE
 );
 -- ===================================================
 
@@ -113,6 +113,7 @@ INSERT INTO `Department` (DepartmentName) values ('Services');
 INSERT INTO `Department` (DepartmentName) values ('Training');
 INSERT INTO `Department` (DepartmentName) values ('Human Resources');
 INSERT INTO `Department` (DepartmentName) values ('Engineering');
+INSERT INTO `Department` (DepartmentName) values ('Waitting_Room');
 
 INSERT INTO `Position` (PositionName ) values ('Dev');
 INSERT INTO `Position` (PositionName ) values ('Test');
@@ -403,7 +404,7 @@ insert into ExamQuestion (ExamID, QuestionID) values (7, 28);
 insert into ExamQuestion (ExamID, QuestionID) values (7, 29);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 30);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 31);
-insert into ExamQuestion (ExamID, QuestionID) values (8, 32);
+insert into ExamQuestion (ExamID, QuestionID) values (8, 18);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 1);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 2);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 3);
