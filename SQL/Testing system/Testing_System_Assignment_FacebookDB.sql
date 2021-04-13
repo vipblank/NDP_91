@@ -14,7 +14,7 @@ CREATE TABLE `Office` (
 	OfficeID	TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     Address		VARCHAR(50),
     NationalID	TINYINT UNSIGNED,
-    FOREIGN KEY ( NationalID ) REFERENCES `National`( NationalID ) ON DELETE CASCADE
+   CONSTRAINT fk_Office_National FOREIGN KEY ( NationalID ) REFERENCES `National`( NationalID ) 
 );
 
 DROP TABLE IF EXISTS `Staff`;
@@ -24,7 +24,7 @@ CREATE TABLE `Staff` (
     LastName	VARCHAR(50),
     Email		VARCHAR(50) UNIQUE KEY,
     OfficeID	TINYINT UNSIGNED,
-    FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE CASCADE
+  CONSTRAINT fk_Staff_Office  FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) 
 );
 
 -- ===================================================
@@ -40,7 +40,7 @@ VALUES 									('VietNam', 	'T.Viet'),
                                         ('India', 		'T.Anh'),
                                         ('HanQuoc', 	'T.han'),
                                         ('ThaiLan', 	'T.THai');
-                                        
+
 INSERT INTO `facebook_db`.`office` ( `Address`, `NationalID`) 
 VALUES								('VN1',	 		 '1'),
 									('My2',	 		 '2'),
@@ -77,8 +77,7 @@ INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`)
 SELECT S.*, N.NationalName FROM `staff` S 
 INNER JOIN `office` O ON S.OfficeID = O.OfficeID
 INNER JOIN `national` N ON N.NationalID = O.NationalID
-GROUP BY NationalName
-HAVING N.NationalName LIKE "VietNam";
+WHERE N.NationalName LIKE "VietNam";
 
 -- Q4 : Lấy ra ID, FullName, Email, National của mỗi nhân viên.
 	SELECT S.StaffID, CONCAT(S.FirstName, S.LastName) AS FullName, S.Email, N.nationalName AS QuocGia FROM office O 
@@ -92,25 +91,25 @@ SELECT S.StaffID, S.Email, N.nationalName AS d FROM office O
     WHERE S.email LIKE 'FirstName1LastName1@gmail.com';
 
 -- Q6 : Bạn hãy tìm xem trên hệ thống có quốc gia nào có thông tin trên hệ thống nhưng không có nhân viên nào đang làm việc.  
-SELECT S.StaffID, O.Address  FROM office O
-LEFT JOIN staff S ON S.OfficeID = O.OfficeID
-GROUP BY O.OfficeID
-HAVING S.StaffID IS NULL;
+SELECT S.StaffID, N.NationalName FROM `staff` S 
+RIGHT JOIN `office` O ON S.OfficeID = O.OfficeID
+RIGHT JOIN `national` N ON O.NationalID = N.NationalID
+WHERE S.StaffID IS NULL;
 
 -- Q7 : Thống kê xem trên thế giới có bao nhiêu quốc gia mà FB đang hoạt động sử dụng tiếng Anh làm ngôn ngữ chính.
-SELECT N.LanguageMain, count(N.NationalName) AS SoNuoc FROM `national` N
-WHERE N.LanguageMain LIKE 'T.Anh';
+SELECT LanguageMain, count(NationalName) AS SoNuoc FROM `national` 
+WHERE LanguageMain LIKE 'T.Anh';
 
--- Q8 : Viết lệnh để lấy ra thông tin nhân viên có tên (First_Name) có 8 ký tự, bắt đầu bằng chữ N và kết thúc bằng chữ C.
+-- Q8 : Viết lệnh để lấy ra thông tin nhân viên có tên (First_Name) có 9 ký tự, bắt đầu bằng chữ F và kết thúc bằng số 1.
 SELECT * FROM Staff
-WHERE FirstName LIKE 'N%C';
+WHERE FirstName LIKE 'F________1';
 
 -- Q9 : Bạn hãy tìm trên hệ thống xem có nhân viên nào đang làm việc nhưng do nhập khi nhập liệu bị lỗi mà nhân viên đó vẫn chưa cho thông tin về trụ sở làm việc(Office).
 UPDATE `facebook_db`.`staff` SET `OfficeID` = NULL WHERE (`StaffID` = '7');
+UPDATE `facebook_db`.`staff` SET `OfficeID` = NULL WHERE (`StaffID` = '6');
 SELECT S.* FROM office O
 RIGHT JOIN staff S ON O.OfficeID = S.OfficeID
-GRoup BY S.OfficeID
-HAVING S.OfficeID IS NULL ;
+WHERE S.OfficeID IS NULL ;
 
 -- Q10 : Nhân viên có mã ID =9 hiện tại đã nghỉ việc, bạn hãy xóa thông tin của nhân viên này trên hệ thống.
 DELETE FROM staff WHERE staffID = '9';
@@ -120,14 +119,18 @@ DROP PROCEDURE IF EXISTS SP_GetnationalInformation;
 DELIMITER $$
 CREATE PROCEDURE SP_GetnationalInformation(IN in_NationalName VARCHAR(50))
 BEGIN
-	DELETE FROM `national` 
-    WHERE NationalName = in_NationalName;
+	DECLARE V_nationalID VARCHAR(50);
+	SELECT N.nationalID INTO V_nationalID FROM `national`N WHERE N.nationalName = in_NationalName;
+    DELETE FROM staff S WHERE S.OfficeID IN (SELECT o.OfficeID FROM office O WHERE o.NationalID = V_nationalID);
+    DELETE FROM office O WHERE o.NationalID = V_nationalID;
+	DELETE FROM `national` N
+    WHERE N.NationalID = V_nationalID;
 END$$
 DELIMITER 
 CALL SP_GetnationalInformation ('VietNam');
 
 -- Q12 : viết cho anh ấy 1 Function để a ấy có thể lấy dữ liệu này 1 cách nhanh chóng.
-
+	
 -- Q13 : Bạn hãy tạo trigger cho table Staff chỉ cho phép insert mỗi quốc gia có tối đa 10.000 nhân viên giúp anh ấy (có thể cấu hình số lượng nhân viên nhỏ hơn vd 10 nhân viên để Test).
 DROP TRIGGER IF EXISTS Trg_BfinsertStf;
 DELIMITER $$
@@ -155,7 +158,7 @@ VALUES 		('FirstName17', 'LastName17', 'FirstName17LastName17@gmail.com', '1');
 -- Q14 : Bạn hãy viết 1 Procedure để lấy ra tên trụ sở mà có số lượng nhân viên đang làm việc nhiều nhất.
 DROP PROCEDURE IF EXISTS SP_GetAddressInformation;
 DELIMITER $$
-CREATE PROCEDURE SP_GetAddressInformation(IN in_Address VARCHAR(50))
+CREATE PROCEDURE SP_GetAddressInformation()
 BEGIN
 	WITH CTE_GetAddress AS (
 	SELECT O.Address AS Diachi, count(S.staffID) AS SoNV FROM Office O
@@ -168,10 +171,10 @@ GROUP BY O.OfficeID
 HAVING count(S.staffID) = (SELECT MAX(SoNV) FROM CTE_GetAddress);
 END$$
 DELIMITER 
-CALL SP_GetAddressInformation ('1');
+CALL SP_GetAddressInformation ();
 
 -- Q15 : Bạn hãy viết 1 Function để khi nhập vào thông tin Email của nhân viên thì sẽ trả ra thông tin đầy đủ của nhân viên đó.
-
+	
 -- Q16 : Bạn hãy viết 1 Trigger để khi thực hiện cập nhật thông tin về trụ sở làm việc của nhân viên đó thì hệ thống sẽ tự động lưu lại trụ sở cũ của nhân viên vào 1 bảng khác có tên Log_Office để Mark có thể xem lại khi cần thiết.
 	DROP TABLE IF EXISTS `log_office`;
 	CREATE TABLE `facebook_db`.`log_office` (
@@ -180,7 +183,7 @@ CALL SP_GetAddressInformation ('1');
 	  `OldOfficeName` VARCHAR(50) NOT NULL,
 	  `ChageDate` DATETIME NOT NULL,
 	  PRIMARY KEY (`Id`));
-  
+      
 DROP TRIGGER IF EXISTS Trg_BfupdateStf;
 DELIMITER $$
 	CREATE TRIGGER Trg_BfupdateStf
@@ -199,20 +202,18 @@ UPDATE `facebook_db`.`staff` SET `OfficeID` = '5' WHERE (`StaffID` = '14');
 DROP TRIGGER IF EXISTS Trg_BfinsertNational;
 DELIMITER $$
 	CREATE TRIGGER Trg_BfinsertNational
-    BEFORE INSERT ON `staff`
+    BEFORE INSERT ON `national`
     FOR EACH ROW
-    BEGIN	
+    BEGIN
 		DECLARE V_nationalID TINYINT;
-        SELECT O.nationalID INTO V_nationalID FROM office O
-        WHERE NEW.OfficeID = O.OfficeID;
-		IF (V_nationalID = '10') THEN
-			SIGNAL SQLSTATE '12345'
+		SELECT count(N.nationalID) INTO V_nationalID FROM `national`N;
+        IF (V_nationalID >9) THEN
+           SIGNAL SQLSTATE '12345'
 			SET MESSAGE_TEXT = 'Khong the nhap';
 		END IF;
     END$$
 DELIMITER ;
-INSERT INTO `facebook_db`.`staff` (`FirstName`, `LastName`, `Email`, `OfficeID`) 
-VALUES 				('FirstName18', 'LastName18', 'FirstName18LastName18@gmail.com', '10');
+INSERT INTO `facebook_db`.`national` (`NationalName`, `LanguageMain`) VALUES ('TayBanNha', 'T.TayBanNha');
 
 -- Q18 : Thống kê mỗi xem mỗi nước(National) đang có bao nhiêu nhân viên đang làm việc.
 SELECT O.nationalID, N.nationalName, count(S.staffID) FROM `office` O
@@ -228,13 +229,13 @@ BEGIN
 	SELECT N.nationalID, N.nationalName AS tennuoc, count(S.staffID) as SoNV FROM `office` O
 	JOIN staff S ON S.officeID = O.officeID
 	JOIN `national` N ON N.nationalID = O.nationalID
-    WHERE N.nationalName LIKE 'in_nationalName';
+    WHERE N.nationalName = in_nationalName;
 END$$
 DELIMITER 
 CALL SP_GetStaffInformation ('VietNam');
 
 -- Q20 : Thống kê mỗi xem trong cùng 1 trụ sở (Office) đang có bao nhiêu employee đang làm việc.
-select O.OfficeID, O.Address, count(S.staffID) from office O
+SELECT O.OfficeID, O.Address, count(S.staffID) FROM office O
 JOIN staff S ON S.officeID = O.OfficeID
 Group BY O.officeID;
 
@@ -249,7 +250,7 @@ BEGIN
     HAVING O.OfficeID = in_OfficeID;
 END$$
 DELIMITER 
-CALL SP_GetEmployee ('2');
+CALL SP_GetEmployee ('1');
 
 -- Q22 : Viết Procedure để lấy ra tên quốc gia đang có nhiều nhân viên nhất
 DROP PROCEDURE IF EXISTS SP_GetStaffInformation;
@@ -271,9 +272,25 @@ DELIMITER
 CALL SP_GetNV ();
 
 -- Q24 : Bạn hãy cấu hình lại các bảng và ràng buộc giữ liệu sao cho khi xóa 1 trụ sở làm việc (Office) thì tất cả dữ liệu liên quan đến trụ sở này sẽ chuyển về Null
- FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE SET NULL;
+ALTER TABLE Staff DROP FOREIGN KEY fk_Staff_Office;
+ALTER TABLE Staff MODIFY COLUMN OfficeID SMALLINT UNSIGNED;
+ALTER TABLE Staff ADD CONSTRAINT fk_Staff_Office FOREIGN KEY (OfficeID) REFERENCES Office(OfficeID) ON DELETE SET NULL;
+ALTER TABLE Office DROP FOREIGN KEY fk_Office_National;
+ALTER TABLE Staff MODIFY COLUMN OfficeID SMALLINT UNSIGNED;
+ALTER TABLE Office ADD CONSTRAINT fk_Office_National FOREIGN KEY (NationalID) REFERENCES `National`(NationalID) ON DELETE SET NULL;
 
 -- Q25 : Bạn hãy cấu hình lại các bảng và ràng buộc giữ liệu sao cho khi xóa 1 trụ sở làm việc (Office) thì tất cả dữ liệu liên quan đến trụ sở này sẽ bị xóa hết.
- FOREIGN KEY ( OfficeID ) REFERENCES `Office`( OfficeID ) ON DELETE CASCADE;
+ALTER TABLE Staff DROP FOREIGN KEY fk_Staff_Office;
+ALTER TABLE Staff ADD CONSTRAINT fk_Staff_Office FOREIGN KEY (OfficeID) REFERENCES office(OfficeID) ON DELETE CASCADE;
+ALTER TABLE Office DROP FOREIGN KEY fk_Office_National;
+ALTER TABLE Office ADD CONSTRAINT fk_Office_National FOREIGN KEY (NationalID) REFERENCES `National`(NationalID) ON DELETE CASCADE;
 
+DELETE FROM `facebook_db`.`office` WHERE (`OfficeID` = '3');
+DELETE FROM `facebook_db`.`national` WHERE (`NationalID` = '1');
 
+SELECT S.StaffID, CASE 
+					WHEN S.Gender = 1 THEN 'Nam'
+					WHEN S.Gender = 0 THEN 'Nu'
+					WHEN S.Gender IS NULL THEN 'Unknown'
+                    END AS Gender
+FROM Staff S;
