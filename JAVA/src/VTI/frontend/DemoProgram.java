@@ -57,7 +57,7 @@ public class DemoProgram {
 		ac4.email = "lehaiyen@gmail.com";
 		ac4.username = "yen";
 		ac4.fullname = "lehaiyen";
-		ac4.CreateDate = LocalDate.of(2021, 03, 12);
+		ac4.createDate = LocalDate.of(2021, 03, 12);
 		ac4.dep = dep2;
 		ac4.pos = pos2;
 
@@ -86,36 +86,36 @@ public class DemoProgram {
 		ac1.email = "vucamnhung@gmail.com";
 		ac1.username = "nhung";
 		ac1.fullname = "vucamnhung";
-		ac1.CreateDate = LocalDate.of(2021, 04, 05);
+		ac1.createDate = LocalDate.of(2021, 04, 05);
 		ac1.dep = dep1;
 		ac1.pos = pos1;
-		ac1.group = new Group[] { gr3,gr1};
+		ac1.groups = new Group[] { gr3,gr1};
 						
 		Account ac2 = new Account();
 		ac2.id = 2;
 		ac2.email = "phamvantruong@gmail.com";
 		ac2.username = "truong";
 		ac2.fullname = "phamvantruong";
-		ac2.CreateDate = LocalDate.of(2021, 03, 12);
+		ac2.createDate = LocalDate.of(2021, 03, 12);
 		ac2.pos = pos2;
-		ac2.group = new Group[] { gr3,gr2 };
+		ac2.groups = new Group[] { gr3,gr2 };
 		
 		Account ac3 = new Account();
 		ac3.id = 3;
 		ac3.email = "dangthanhlam@gmail.com";
 		ac3.username = "lam";
 		ac3.fullname = "dangthanhlam";
-		ac3.CreateDate = LocalDate.of(2021, 02, 22);
+		ac3.createDate = LocalDate.of(2021, 02, 22);
 		ac3.dep = dep5;
 		ac3.pos = pos3;
-		ac3.group = new Group[] {gr2,gr1};
+		ac3.groups = new Group[] {gr2,gr1};
 		
 		Account ac5 = new Account();
 		ac5.id = 5;
 		ac5.email = "levannam@gmail.com";
 		ac5.username = "nam";
 		ac5.fullname = "levannam";
-		ac5.CreateDate = LocalDate.of(2021, 02, 28);
+		ac5.createDate = LocalDate.of(2021, 02, 28);
 		ac5.dep = dep4;
 		
 		Account ac6 = new Account();
@@ -123,7 +123,7 @@ public class DemoProgram {
 		ac6.email = "nguyenhuongly@gmail.com";
 		ac6.username = "ly";
 		ac6.fullname = "nguyenhuongly";
-		ac6.CreateDate = LocalDate.of(2021, 03, 18);
+		ac6.createDate = LocalDate.of(2021, 03, 18);
 		ac6.pos = pos3;
 		
 //		create typequestion
@@ -201,7 +201,7 @@ public class DemoProgram {
 		Q1.typeQ = tp1;
 		Q1.creator = ac3;
 		Q1.createdate = LocalDate.of(2021, 04, 02);
-		Q1.exam = new Exam[] {Ex1, Ex2};
+		Q1.exams = new Exam[] {Ex1, Ex2};
 		
 		Question Q2 = new Question();
 		Q2.id = 2;
@@ -210,7 +210,7 @@ public class DemoProgram {
 		Q2.typeQ = tp1;
 		Q2.creator = ac2;
 		Q2.createdate = LocalDate.of(2021, 04, 02);
-		Q2.exam = new Exam[] {Ex1, Ex2};
+		Q2.exams = new Exam[] {Ex1, Ex2};
 		
 		Question Q3 = new Question();
 		Q3.id = 3;
@@ -219,7 +219,7 @@ public class DemoProgram {
 		Q3.typeQ = tp1;
 		Q3.creator = ac1;
 		Q3.createdate = LocalDate.of(2021, 04, 02);
-		Q3.exam = new Exam[] {Ex1, Ex2};
+		Q3.exams = new Exam[] {Ex1, Ex2};
 		
 		Question Q4 = new Question();
 		Q4.id = 4;
@@ -228,7 +228,7 @@ public class DemoProgram {
 		Q4.typeQ = tp2;
 		Q4.creator = ac2;
 		Q4.createdate = LocalDate.of(2021, 04, 02);
-		Q4.exam = new Exam[] {Ex3, Ex4};
+		Q4.exams = new Exam[] {Ex3, Ex4};
 		
 		Question Q5 = new Question();
 		Q5.id = 5;
@@ -237,7 +237,7 @@ public class DemoProgram {
 		Q5.typeQ = tp2;
 		Q5.creator = ac4;
 		Q5.createdate = LocalDate.of(2021, 04, 02);
-		Q5.exam = new Exam[] {Ex3, Ex4};
+		Q5.exams = new Exam[] {Ex3, Ex4};
 		
 		Question Q6 = new Question();
 		Q6.id = 6;
@@ -246,7 +246,7 @@ public class DemoProgram {
 		Q6.typeQ = tp2;
 		Q6.creator = ac5;
 		Q6.createdate = LocalDate.of(2021, 04, 02);
-		Q6.exam = new Exam[] {Ex3, Ex4};
+		Q6.exams = new Exam[] {Ex3, Ex4};
 		
 //		create answer
 		Answer as1 = new Answer();
@@ -312,7 +312,7 @@ public class DemoProgram {
 		System.out.println("email: " + ac1.email);
 		System.out.println("username: " + ac1.username);
 		System.out.println("fullname: " + ac1.fullname);
-		System.out.println("createdate: " + ac1.CreateDate);
+		System.out.println("createdate: " + ac1.createDate);
 		System.out.println("phòng ban: " + ac1.dep.name);
 		System.out.println("chức vụ: " + ac1.pos.name);
 
@@ -330,14 +330,14 @@ public class DemoProgram {
 			System.out.println("Phòng Số:" + ac2.dep.id);
 		}
 
-		if (ac4.group == null) {
+		if (ac4.groups == null) {
 			System.out.println("Nhân Viên Này Chưa Có Group");
 		}
-		if (ac2.group.length == 1 || ac2.group.length == 2) {
+		if (ac2.groups.length == 1 || ac2.groups.length == 2) {
 			System.out.println("Group của nhân viên này là JAVA fresher, C#Fresher");
-		} else if (ac2.group.length == 3) {
+		} else if (ac2.groups.length == 3) {
 			System.out.println("Nhân viên này là người quan trọng");
-		} else if (ac2.group.length == 4) {
+		} else if (ac2.groups.length == 4) {
 			System.out.println("Nhân Viên Này Là Người Hóng Chuyện");
 		}
 		if (ac1.pos.name.equals("DEV")) {

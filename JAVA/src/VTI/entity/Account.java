@@ -9,6 +9,6 @@ public class Account {
 	public String fullname;
 	public Department dep ;
 	public Position pos;
-	public LocalDate CreateDate;
-	public Group[] group;
+	public LocalDate createDate;
+	public Group[] groups;
 }

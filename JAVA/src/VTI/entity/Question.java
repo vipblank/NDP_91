@@ -9,5 +9,5 @@ public class Question {
 	public Typequestion typeQ;
 	public Account creator;
 	public LocalDate createdate;
-	public Exam[] exam;
+	public Exam[] exams;
 }	
