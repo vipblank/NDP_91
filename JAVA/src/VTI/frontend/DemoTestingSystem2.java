@@ -379,6 +379,7 @@ public class DemoTestingSystem2 {
 
 //		Ex1 - Question 7
 		System.out.println("Ex1 - Q7 : Sử dụng switch case để làm lại Question 4");
+		
 
 //		Ex1 - Question 8
 		System.out.println("Ex1-Q8 : In ra thông tin các account bao gồm: Email, FullName và tên phòng ban của họ");
@@ -406,14 +407,15 @@ public class DemoTestingSystem2 {
 
 //		Ex1 - Question 11
 		System.out.println("Ex1-Q11 : In ra thông tin các phòng ban bao gồm: id và name theo định dạng sau");
-		Department[] depArray2 = { dep1, dep2, dep3, dep4, dep5 };
-		for (int i = 0; i < depArray2.length; i++) {
-			System.out.println("ID : " + depArray2[i].id);
-			System.out.println("Name : " + depArray2[i].name);
+		Department[] depArray1 = { dep1, dep2, dep3, dep4, dep5 };
+		for (int j = 0; j < depArray1.length; j++) {
+			System.out.println("ID : " + depArray1[j].id);
+			System.out.println("Name : " + depArray1[j].name);
 		}
 
 //		Ex1 - Question 12 
 		System.out.println("Ex1-Q12 : Chỉ in ra thông tin 2 department đầu tiên theo định dạng như Question 10");
+		Department[] depArray2 = { dep1, dep2, dep3, dep4, dep5 };
 		for (int i = 0; i < 2; i++) {
 			System.out.println("ID : " + depArray2[i].id);
 			System.out.println("Name : " + depArray2[i].name);
@@ -421,23 +423,23 @@ public class DemoTestingSystem2 {
 
 //		Ex1 - Question 13
 		System.out.println("Ex1-Q13 : In ra thông tin tất cả các account ngoại trừ account thứ 2");
-		Account[] accArray5 = { ac1, ac2, ac3, ac4, ac5, ac6 };
-		for (int i = 0; i < accArray5.length; i++) {
+		Account[] accArray2 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+		for (int i = 0; i < accArray2.length; i++) {
 			if (i != 1) {
-				System.out.println("ID : " + accArray5[i].id);
-				System.out.println("userName : " + accArray5[i].userName);
-				System.out.println("fullName : " + accArray5[i].fullName);
-				System.out.println("Email : " + accArray5[i].email);
+				System.out.println("ID : " + accArray2[i].id);
+				System.out.println("userName : " + accArray2[i].userName);
+				System.out.println("fullName : " + accArray2[i].fullName);
+				System.out.println("Email : " + accArray2[i].email);
 			}
 		}
 
 //		Ex1 - Question 14
 		System.out.println("Ex1 - Q14 : In ra thông tin tất cả các account có id < 4");
 		for (int i = 0; i < 3; i++) {
-			System.out.println("ID : " + accArray5[i].id);
-			System.out.println("userName : " + accArray5[i].userName);
-			System.out.println("fullName : " + accArray5[i].fullName);
-			System.out.println("Email : " + accArray5[i].email);
+			System.out.println("ID : " + accArray2[i].id);
+			System.out.println("userName : " + accArray2[i].userName);
+			System.out.println("fullName : " + accArray2[i].fullName);
+			System.out.println("Email : " + accArray2[i].email);
 		}
 
 //		Ex1 - Question 15
@@ -453,60 +455,130 @@ public class DemoTestingSystem2 {
 				"Ex1 - Q16 : Làm lại các Question ở phần FOR bằng cách sử dụng WHILE kết hợp với lệnh break, continue");
 		System.out.println(
 				"Ex1 - Q16 - Q10 : In ra thông tin các account bao gồm: Email, FullName và tên phòng ban của họ theo định dạng");
-		Account[] accArray11 = { ac1, ac2, ac3, ac4, ac5, ac6 };
-		int j1 = 0;
-		while (j1 < accArray11.length) {
-			System.out.println("Email : " + accArray11[j1].email);
-			System.out.println("FullName : " + accArray11[j1].fullName);
-			System.out.println("PhòngBan : " + accArray11[j1].dep.name);
-			j1++;
+		Account[] accArray3 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+		int i1 = 0;
+		while (i1 < accArray3.length) {
+			System.out.println("Email : " + accArray3[i1].email);
+			System.out.println("FullName : " + accArray3[i1].fullName);
+			System.out.println("PhòngBan : " + accArray3[i1].dep.name);
+			i1++;
 		};
 
 		System.out.println("Ex1 - Q16 - Q11 : In ra thông tin các phòng ban bao gồm: id và name theo định dạng");
-		Department[] depArray12 = { dep1, dep2, dep3, dep4, dep5 };
-		int j2 = 0;
-		while (j2 < depArray12.length) {
-			System.out.println("ID : " + depArray12[j2].id);
-			System.out.println("Name : " + depArray12[j2].name);
-			j2++;
+		Department[] depArray3 = { dep1, dep2, dep3, dep4, dep5 };
+		int j1 = 0;
+		while (j1 < depArray3.length) {
+			System.out.println("ID : " + depArray3[j1].id);
+			System.out.println("Name : " + depArray3[j1].name);
+			j1++;
 		};
 
 		System.out
 				.println("Ex1 - Q16 - Q12 : Chỉ in ra thông tin 2 department đầu tiên theo định dạng như Question 10");
-		Department[] depArray13 = { dep1, dep2, dep3, dep4, dep5 };
-		int j3 = 0;
-		while (j3 < 2) {
-			System.out.println("ID : " + depArray13[j3].id);
-			System.out.println("Name : " + depArray13[j3].name);
-			j3++;
+		Department[] depArray6 = { dep1, dep2, dep3, dep4, dep5 };
+		int j6 = 0;
+		while (j6 < 2) {
+			System.out.println("ID : " + depArray6[j6].id);
+			System.out.println("Name : " + depArray6[j6].name);
+			j6++;
 		}
 
 		System.out.println("Ex1 - Q16 - Q13 : In ra thông tin tất cả các account ngoại trừ account thứ 2");
-		Account[] accArray12 = { ac1, ac2, ac3, ac4, ac5, ac6 };
-		int a3 = 0;
-		while (a3 < accArray12.length) {
-		if (a3 != 1) {
-			System.out.println("Thông tin account thứ " + (a3 + 1) + " là:");
-			System.out.println("ID : " + accArray12[a3].id);
-			System.out.println("userName : " + accArray12[a3].userName);
-			System.out.println("fullName : " + accArray12[a3].fullName);
-			System.out.println("Email : " + accArray12[a3].email);
-		} a3++;
+		Account[] accArray4 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+		int i2 = 0;
+		while (i2 < accArray4.length) {
+		if (i2 != 1) {
+			System.out.println("Thông tin account thứ " + (i2 + 1) + " là:");
+			System.out.println("ID : " + accArray4[i2].id);
+			System.out.println("userName : " + accArray4[i2].userName);
+			System.out.println("fullName : " + accArray4[i2].fullName);
+			System.out.println("Email : " + accArray4[i2].email);
+		} i2++;
 	}	
+		
+		System.out.println("Ex1 - Q16 - Q14 : In ra thông tin tất cả các account có id < 4");
+		Account[] accArray13 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+		int a4 = 0;
+			while (a4 < accArray13.length) {
+				if (accArray13[a4].id < 4) {
+					System.out.println("ID : " + accArray13[a4].id);
+					System.out.println("userName : " + accArray13[a4].userName);
+					System.out.println("fullName : " + accArray13[a4].fullName);
+					System.out.println("Email : " + accArray13[a4].email);
+				} a4++;
+			}
+		
+		System.out.println("Ex1 - Q16 - Q15 : In ra các số chẵn nhỏ hơn hoặc bằng 20");
+		int a = 0;
+				while (a <= 20) {
+					if (a%2 == 0) {
+						System.out.println(a + "");
+					}a++;
+				}
+			
 //		Ex1 - Question 17
-			System.out.println(
-					"Ex1-Q17 : Làm lại các Question ở phần FOR bằng cách sử dụng DO-WHILE kết hợp với lệnh break, continue");
-			System.out.println("Q10 : ");
-			Account[] accArray3 = { ac1, ac2, ac3, ac4, ac5, ac6 };
-			int j = 0;
-			do {
-				System.out.println("Thông tin account thứ " + (j + 1) + "là: ");
-				System.out.println("Email : " + accArray3[j].email);
-				System.out.println("FullName : " + accArray3[j].fullName);
-				System.out.println("PhòngBan : " + accArray3[j].dep.name);
-				j++;
-			} while (j < accArray3.length);
 
+			System.out.println("Ex1 - Q17 - Q10 : In ra thông tin các account bao gồm: Email, FullName và tên phòng ban của họ ");
+			Account[] accArray5 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+			int i3 = 0;
+			do {
+				System.out.println("Thông tin account thứ " + (i3 + 1) + "là: ");
+				System.out.println("Email : " + accArray5[i3].email);
+				System.out.println("FullName : " + accArray5[i3].fullName);
+				System.out.println("PhòngBan : " + accArray5[i3].dep.name);
+				i3++;
+			} while (i3 < accArray3.length);
+
+			System.out.println("Ex1 - Q17 - Q11 : In ra thông tin các phòng ban bao gồm: id và name theo định dạng");
+			Department[] depArray4 = { dep1, dep2, dep3, dep4, dep5 };
+			int j4 = 0;
+			do {
+				System.out.println("Email : " + depArray4[j4].id);
+				System.out.println("FullName : " + depArray4[j4].name);
+				j4++;
+			} while (j4 < depArray4.length);
+			
+			
+			System.out.println("Ex1 - Q17 - Q12 : Chỉ in ra thông tin 2 department đầu tiên theo định dạng như Question 10");
+			Department[] depArray5 = { dep1, dep2, dep3, dep4, dep5 };
+			int j5 = 0;
+			do {
+				System.out.println("Email : " + depArray5[j5].id);
+				System.out.println("FullName : " + depArray5[j5].name);
+				j5++;
+			} while ( j5 < 2);
+			
+			System.out.println("Ex1 - Q17 - Q13 : In ra thông tin tất cả các account ngoại trừ account thứ 2");
+			Account[] accArray6 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+			int i6 = 0;
+			do {if (i6 != 1) {							
+				System.out.println("ID: " + accArray6[i6].id);
+				System.out.println("Email : " + accArray6[i6].email);
+				System.out.println("FullName : " + accArray6[i6].fullName);
+				System.out.println("PhòngBan : " + accArray6[i6].dep.name);
+				}i6++;
+			} while (i6 < accArray6.length);
+			
+			System.out.println("Ex1 - Q17 - Q14 : In ra thông tin tất cả các account có id < 4");
+			Account[] accArray7 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+			int i7 = 0;
+			do {
+				if (accArray7[i7].id < 4) {
+					System.out.println("ID: " + accArray7[i7].id);
+					System.out.println("Email : " + accArray7[i7].email);
+					System.out.println("FullName : " + accArray7[i7].fullName);
+					System.out.println("PhòngBan : " + accArray7[i7].dep.name);
+				}i7++;
+			} while (i7 < accArray6.length);
+			
+			System.out.println("Ex1 - Q17 - Q15 : In ra các số chẵn nhỏ hơn hoặc bằng 20");
+			int a2 = 0;
+			do {
+				if (a2%2 == 0) {
+					System.out.println(a2 + "");
+				}a2++;
+			} while (a2 <= 20);
+			
 //		Ex4 - Question 1
 			System.out.println("Ex4-Q1 : In ngẫu nhiên ra 1 số nguyên");
 			Random random1 = new Random();
@@ -524,8 +596,8 @@ public class DemoTestingSystem2 {
 					"Ex4-Q3 : Khai báo 1 array bao gồm các tên của các bạn trong lớp, sau đó in ngẫu nhiên ra tên của 1 bạn");
 			Account[] accountArray = { ac1, ac2, ac3, ac4, ac5, ac6 };
 			Random random = new Random();
-			int a = random.nextInt(accountArray.length);
-			System.out.println("Tên ngấu nhiên của 1 nhân viên : " + accountArray[a].fullName);
+			int a1 = random.nextInt(accountArray.length);
+			System.out.println("Tên ngấu nhiên của 1 nhân viên : " + accountArray[a1].fullName);
 
 //		Ex5 : Question 5
 			System.out.println("Ex5-Q5 : Viết lệnh cho phép người dùng tạo account (viết thành method)");
