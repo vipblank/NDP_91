@@ -459,6 +459,7 @@ public class DemoTestingSystem2 {
 			System.out.println("Email : " + accArray11[j1].email);
 			System.out.println("FullName : " + accArray11[j1].fullName);
 			System.out.println("PhòngBan : " + accArray11[j1].dep.name);
+			j1++;
 		};
 
 		System.out.println("Ex1 - Q16 - Q11 : In ra thông tin các phòng ban bao gồm: id và name theo định dạng");
@@ -467,14 +468,31 @@ public class DemoTestingSystem2 {
 		while (j2 < depArray12.length) {
 			System.out.println("ID : " + depArray12[j2].id);
 			System.out.println("Name : " + depArray12[j2].name);
+			j2++;
 		};
 
 		System.out
 				.println("Ex1 - Q16 - Q12 : Chỉ in ra thông tin 2 department đầu tiên theo định dạng như Question 10");
-		while (j2 < 2) {
-			System.out.println("ID : " + depArray12[j2].id);
-			System.out.println("Name : " + depArray12[j2].name);
+		Department[] depArray13 = { dep1, dep2, dep3, dep4, dep5 };
+		int j3 = 0;
+		while (j3 < 2) {
+			System.out.println("ID : " + depArray13[j3].id);
+			System.out.println("Name : " + depArray13[j3].name);
+			j3++;
+		}
 
+		System.out.println("Ex1 - Q16 - Q13 : In ra thông tin tất cả các account ngoại trừ account thứ 2");
+		Account[] accArray12 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+		int a3 = 0;
+		while (a3 < accArray12.length) {
+		if (a3 != 1) {
+			System.out.println("Thông tin account thứ " + (a3 + 1) + " là:");
+			System.out.println("ID : " + accArray12[a3].id);
+			System.out.println("userName : " + accArray12[a3].userName);
+			System.out.println("fullName : " + accArray12[a3].fullName);
+			System.out.println("Email : " + accArray12[a3].email);
+		} a3++;
+	}	
 //		Ex1 - Question 17
 			System.out.println(
 					"Ex1-Q17 : Làm lại các Question ở phần FOR bằng cách sử dụng DO-WHILE kết hợp với lệnh break, continue");
@@ -557,4 +575,4 @@ public class DemoTestingSystem2 {
 
 		}
 	}
-}
+
