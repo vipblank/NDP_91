@@ -1,6 +1,8 @@
 package com.VTI.frontend;
 
 import java.time.LocalDate;
+import java.util.Random;
+import java.util.Scanner;
 
 import com.VTI.entity.Account;
 import com.VTI.entity.Answer;
@@ -55,8 +57,8 @@ public class DemoProgram {
 		Account ac4 = new Account();
 		ac4.id = 4;
 		ac4.email = "lehaiyen@gmail.com";
-		ac4.username = "yen";
-		ac4.fullname = "lehaiyen";
+		ac4.userName = "yen";
+		ac4.fullName = "lehaiyen";
 		ac4.createDate = LocalDate.of(2021, 03, 12);
 		ac4.dep = dep2;
 		ac4.pos = pos2;
@@ -84,8 +86,8 @@ public class DemoProgram {
 		Account ac1 = new Account();
 		ac1.id = 1;
 		ac1.email = "vucamnhung@gmail.com";
-		ac1.username = "nhung";
-		ac1.fullname = "vucamnhung";
+		ac1.userName = "nhung";
+		ac1.fullName = "vucamnhung";
 		ac1.createDate = LocalDate.of(2021, 04, 05);
 		ac1.dep = dep1;
 		ac1.pos = pos1;
@@ -94,8 +96,8 @@ public class DemoProgram {
 		Account ac2 = new Account();
 		ac2.id = 2;
 		ac2.email = "phamvantruong@gmail.com";
-		ac2.username = "truong";
-		ac2.fullname = "phamvantruong";
+		ac2.userName = "truong";
+		ac2.fullName = "phamvantruong";
 		ac2.createDate = LocalDate.of(2021, 03, 12);
 		ac2.pos = pos2;
 		ac2.groups = new Group[] { gr3,gr2 };
@@ -103,8 +105,8 @@ public class DemoProgram {
 		Account ac3 = new Account();
 		ac3.id = 3;
 		ac3.email = "dangthanhlam@gmail.com";
-		ac3.username = "lam";
-		ac3.fullname = "dangthanhlam";
+		ac3.userName = "lam";
+		ac3.fullName = "dangthanhlam";
 		ac3.createDate = LocalDate.of(2021, 02, 22);
 		ac3.dep = dep5;
 		ac3.pos = pos3;
@@ -113,16 +115,16 @@ public class DemoProgram {
 		Account ac5 = new Account();
 		ac5.id = 5;
 		ac5.email = "levannam@gmail.com";
-		ac5.username = "nam";
-		ac5.fullname = "levannam";
+		ac5.userName = "nam";
+		ac5.fullName = "levannam";
 		ac5.createDate = LocalDate.of(2021, 02, 28);
 		ac5.dep = dep4;
 		
 		Account ac6 = new Account();
 		ac6.id = 6;
 		ac6.email = "nguyenhuongly@gmail.com";
-		ac6.username = "ly";
-		ac6.fullname = "nguyenhuongly";
+		ac6.userName = "ly";
+		ac6.fullName = "nguyenhuongly";
 		ac6.createDate = LocalDate.of(2021, 03, 18);
 		ac6.pos = pos3;
 		
@@ -253,53 +255,51 @@ public class DemoProgram {
 		as1.id = 1;
 		as1.content = "content1";
 		as1.quesid = Q1;
-		as1.isCorrect.equals("True");
+
 		
 		Answer as2 = new Answer();
 		as2.id = 2;
 		as2.content = "content1";
 		as2.quesid = Q1;
-		as2.isCorrect.equals("False");
+
 		
 		Answer as3 = new Answer();
 		as3.id = 3;
 		as3.content = "content1";
 		as3.quesid = Q2;
-		as3.isCorrect.equals("True");
+
 		
 		Answer as4 = new Answer();
 		as4.id = 4;
 		as4.content = "content1";
 		as4.quesid = Q2;
-		as4.isCorrect.equals("False");
+
 		
 		Answer as5 = new Answer();
 		as5.id = 5;
 		as5.content = "content1";
 		as5.quesid = Q3;
-		as5.isCorrect.equals("True");
+
 		
 		Answer as6 = new Answer();
 		as6.id = 6;
 		as6.content = "content1";
 		as6.quesid = Q3;
-		as6.isCorrect.equals("False");
+
 		
 		Answer as7 = new Answer();
 		as7.id = 7;
 		as7.content = "content1";
 		as7.quesid = Q4;
-		as7.isCorrect.equals("True");
+
 		
 		Answer as8 = new Answer();
 		as8.id = 8;
 		as8.content = "content1";
 		as8.quesid = Q4;
-		as8.isCorrect.equals("False");
 		
 //		TestingSystem1
-		
-		
+
 		System.out.println("chức vụ số 1");
 		System.out.println("ID: " + pos1.id);
 		System.out.println("Name: " + pos1.name);
@@ -310,8 +310,8 @@ public class DemoProgram {
 
 		System.out.println("tài khoản 1");
 		System.out.println("email: " + ac1.email);
-		System.out.println("username: " + ac1.username);
-		System.out.println("fullname: " + ac1.fullname);
+		System.out.println("username: " + ac1.userName);
+		System.out.println("fullname: " + ac1.fullName);
 		System.out.println("createdate: " + ac1.createDate);
 		System.out.println("phòng ban: " + ac1.dep.name);
 		System.out.println("chức vụ: " + ac1.pos.name);
@@ -323,29 +323,29 @@ public class DemoProgram {
 		System.out.println("ngày tạo:" + gr1.CreateDate);
 		System.out.println("tài khoản:" + gr1.accounts);
 		
-		System.out.println("Nhân Viên Số 2");
-		if (ac2.dep == null) {
-			System.out.println("Nhân Viên Chưa Có Phòng Ban");
-		} else {
-			System.out.println("Phòng Số:" + ac2.dep.id);
-		}
-
-		if (ac4.groups == null) {
-			System.out.println("Nhân Viên Này Chưa Có Group");
-		}
-		if (ac2.groups.length == 1 || ac2.groups.length == 2) {
-			System.out.println("Group của nhân viên này là JAVA fresher, C#Fresher");
-		} else if (ac2.groups.length == 3) {
-			System.out.println("Nhân viên này là người quan trọng");
-		} else if (ac2.groups.length == 4) {
-			System.out.println("Nhân Viên Này Là Người Hóng Chuyện");
-		}
-		if (ac1.pos.name.equals("DEV")) {
-			System.out.println("Đây là Deverloper");
-		} else {
-			System.out.println("Đây không phải là Deverloper");
+//		Test chức năng random
+		System.out.println(" Test chức năng ranom");
+		Random random = new Random();
+		int n = random.nextInt();
+		System.out.println("Số Ngẫu Nhiên : " + n);
+		
+		System.out.println(" Test chức năng ranom");
+		Random random1 = new Random();
+		int m = random1.nextInt(100);
+		System.out.println("Số Ngẫu Nhiên : " + m);		
+		
+//		Test ToString
+		System.out.println(ac1.toString());
+		
+//		Test Scanner
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Mời bạn nhập vào ID");
+		int id = sc.nextInt();
+		System.out.println("Mời bạn nhập vào Email");
+		String email = sc.next();
+		System.out.println("ID bạn vừa nhập: " + id + "Email: " + email);
 		}
 		
 	}
 
-}
+
