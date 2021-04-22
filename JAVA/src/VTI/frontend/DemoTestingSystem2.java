@@ -473,10 +473,8 @@ public class DemoTestingSystem2 {
 			System.out.println("Name : " + depArray3[j1].name);
 			j1++;
 		}
-		;
-
-		System.out
-				.println("Ex1 - Q16 - Q12 : Chỉ in ra thông tin 2 department đầu tiên theo định dạng như Question 10");
+		
+		System.out.println("Ex1 - Q16 - Q12 : Chỉ in ra thông tin 2 department đầu tiên theo định dạng như Question 10");
 		Department[] depArray6 = { dep1, dep2, dep3, dep4, dep5 };
 		int j6 = 0;
 		while (j6 < 2) {
@@ -484,7 +482,7 @@ public class DemoTestingSystem2 {
 			System.out.println("Name : " + depArray6[j6].name);
 			j6++;
 		}
-
+		
 		System.out.println("Ex1 - Q16 - Q13 : In ra thông tin tất cả các account ngoại trừ account thứ 2");
 		Account[] accArray4 = { ac1, ac2, ac3, ac4, ac5, ac6 };
 		int i2 = 0;
@@ -590,25 +588,25 @@ public class DemoTestingSystem2 {
 		} while (a2 <= 20);
 
 //		Ex2 - Question 1
-		System.out.println("Khai báo 1 số nguyên = 5 và sử dụng lệnh System out printf để in ra số nguyên đó");
+		System.out.println("Ex2 - Q1 : Khai báo 1 số nguyên = 5 và sử dụng lệnh System out printf để in ra số nguyên đó");
 		int o1 = 5;
 		System.out.printf("%s", "số nguyên là : " + o1);
 		
 //		Ex2 - Question 2
-		System.out.println("Khai báo 1 số nguyên = 100 000 000 và sử dụng lệnh System out printf để in ra số nguyên đó thành định dạng như sau: 100,000,000");
+		System.out.println("Ex2 - Q2 : Khai báo 1 số nguyên = 100 000 000 và sử dụng lệnh System out printf để in ra số nguyên đó thành định dạng như sau: 100,000,000");
 		int o2 = 100000000;
 		System.out.printf(Locale.US, "%,d %n", o2 );
 		
 //		Ex2 - Question 3
-		System.out.println("Khai báo 1 số thực = 5,567098 và sử dụng lệnh System out printf để in ra số thực đó chỉ bao gồm 4 số đằng sau");
+		System.out.println("Ex2 - Q3 : Khai báo 1 số thực = 5,567098 và sử dụng lệnh System out printf để in ra số thực đó chỉ bao gồm 4 số đằng sau");
 		
 //		Ex2 - Question 4
-		System.out.println("Khai báo Họ và tên của 1 học sinh và in ra họ và tên học sinh đó theo định dạng");
+		System.out.println("Ex2 - Q4 : Khai báo Họ và tên của 1 học sinh và in ra họ và tên học sinh đó theo định dạng");
 		System.out.print("Tên tôi là : " + ac1.fullName);
 		System.out.println("Tôi đang độc thân");
 		
 //		Ex2 - Question 5
-		System.out.println("Lấy thời gian bây giờ và in ra theo định dạng sau");
+		System.out.println("Ex2 - Q5 : Lấy thời gian bây giờ và in ra theo định dạng sau");
 		
 		
 //		Ex4 - Question 1
@@ -632,186 +630,59 @@ public class DemoTestingSystem2 {
 		System.out.println("Tên ngấu nhiên của 1 nhân viên : " + accountArray[a1].fullName);
 
 //		Ex4 - Question 4
-		System.out.println("Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 24-07-1995 tới ngày 20-12-1995");
-
-//		Ex5 - Question 1
-		System.out.println("Ex5 - Q1 : Viết lệnh cho phép người dùng nhập 3 số nguyên vào chương trình");
-		Scanner sc1 = new Scanner(System.in);
-		int x;
-		int y;
-		int z;
-		System.out.println("Mời bạn nhập số thứ 1 ");
-		x = sc1.nextInt();
-		System.out.println("Mời bạn nhập số thứ 2");
-		y = sc1.nextInt();
-		System.out.println("Mời bạn nhập số thứ 3");
-		z = sc1.nextInt();
-		System.out.println("Những số đã nhập vào : " + x + y + z);
+		System.out.println("Ex4 - Q4 : Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 24-07-1995 tới ngày 20-12-1995");
+		int Minday = (int) LocalDate.of(1995, 07, 24).toEpochDay();
+		int Maxday = (int) LocalDate.of(1995, 12, 20).toEpochDay();
+		long randomInt = Minday + random.nextInt(Maxday - Minday);
+		LocalDate randomday = LocalDate.ofEpochDay(randomInt);
+		System.out.println("Ngày ngẫu nhiên là : " + randomday);
 		
-
-//		Ex5 - Question 2
-		System.out.println("Viết lệnh cho phép người dùng nhập 2 số thực vào chương trình");
-		Scanner sc2 = new Scanner(System.in);
-		System.out.println("Mời bạn nhập vào 2 số thực");
-		System.out.println("Mời bạn nhập vào số thứ 1");
-		float f1 = sc2.nextFloat();
-		System.out.println("Mời bạn nhập vào số thực thứ 2");
-		float f2 = sc2.nextFloat();
-		System.out.println("Những số bạn vừa nhập : " + f1 + "" + f2);
-
-//		Ex5 - Question 3
-		System.out.println("Ex5 - Q3 : Viết lệnh cho phép người dùng nhập họ và tên");
-		Scanner sc3 = new Scanner(System.in);
-		System.out.println("Mời bạn nhập vào họ");
-		String str1 = sc3.next();
-		System.out.println("Mời bạn nhập vào tên");
-		String str2 = sc3.next();
-		System.out.println("Họ và tên của bạn là : " + str1 + "" + str2);
-
-//		Ex5 - Question 4
-		System.out.println("Viết lệnh cho phép người dùng nhập vào ngày sinh nhật của họ");
-		Scanner sc4 = new Scanner(System.in);
-		System.out.println("Mời bạn nhập vào năm sinh");
-		int year = sc4.nextInt();
-		System.out.println("Mời bạn nhập vào tháng sinh");
-		int month = sc4.nextInt();
-		System.out.println("Mời bạn nhập vào ngày sinh");
-		int day = sc4.nextInt();
-		LocalDate ngaysinh = LocalDate.of(year, month, day);
-		System.out.println("Ngày sinh của bạn là : " + ngaysinh);
-
-//		Ex5 - Question 5
-		System.out.println("Ex5-Q5 : Viết lệnh cho phép người dùng tạo account (viết thành method)");
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Mời bạn nhập vào thông tin account");
-		Account acc = new Account();
-		System.out.println("Mời bạn nhập vào ID ");
-		acc.id = sc.nextInt();
-		System.out.println("Mời bạn nhập vào userName");
-		acc.userName = sc.next();
-		System.out.println("Mời bạn nhập vào fullName");
-		acc.fullName = sc.next();
-		System.out.println("Mời bạn nhập vào Email");
-		acc.email = sc.next();
-		System.out.println("Mời bạn nhập vào mã chức vụ :  1.DEV,  2.TEST, 3.SCRUM_MASTER, 4.PM ");
-		int posNum = sc.nextInt();
-		switch (posNum) {
-		case 1:
-			Position ps1 = new Position();
-			ps1.name = PositionName.DEV;
-			acc.pos = ps1;
-			break;
-		case 2:
-			Position ps2 = new Position();
-			ps2.name = PositionName.TEST;
-			acc.pos = ps2;
-			break;
-		case 3:
-			Position ps3 = new Position();
-			ps3.name = PositionName.SCRUM_MASTER;
-			acc.pos = ps3;
-			break;
-		case 4:
-			Position ps4 = new Position();
-			ps4.name = PositionName.PM;
-			acc.pos = ps4;
-			break;
-		default:
-			break;
+//		Ex4 - Question 5
+		System.out.println("Ex4 - Q5 : Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 1 năm trở lại đây");
+		int now = (int) LocalDate.now().toEpochDay();
+		long randomdate = now - random.nextInt(365);
+		LocalDate randomday2 = LocalDate.ofEpochDay(randomdate);
+		System.out.println("Ngày ngẫu nhiên là : " + randomday2);
+		
+//		Ex4 - Question 6
+		System.out.println("Ex4 - Q6 : Lấy ngẫu nhiên 1 ngày trong quá khứ");
+		int Maxday2 = (int) LocalDate.now().toEpochDay();
+		long randomdate2 = random.nextInt(Maxday2);
+		LocalDate randomday3 = LocalDate.ofEpochDay(randomdate2);
+		System.out.println("Ngày ngẫu nhiên trong quá khứ là : " + randomday3);
+		
+//		Ex4 - Question 7
+		System.out.println("Ex4 - Q7 : Lấy ngẫu nhiên 1 số có 3 chữ số");
+		int z1 = random.nextInt(999 - 100 + 1);
+		System.out.println("Số ngẫu nhiên có 3 chữ số : " + z1);
+		
+//		Ex6 - Question 1
+		System.out.println("Ex6 - Q1 : Tạo method để in ra các số chẵn nguyên dương nhỏ hơn 10");
+		Scanner sc1 = new Scanner(System.in);
+		for (int z2 = 0; z2 < 10; z2++) {
+			if (z2%2 == 0) {
+				System.out.println("số chẵn nguyên dương nhỏ hơn 10 là :");
+				System.out.println(z2 + "");
+			}		
 		}
-		System.out.println("Thông tin account mới nhập");
-		System.out.println("ID: " + acc.id);
-		System.out.println("userName: " + acc.userName);
-		System.out.println("FullName: " + acc.fullName);
-		System.out.println("Email: " + acc.email);
-		System.out.println("Chức Vụ: " + acc.pos.name);
-
-//			Ex5 - Question 6
-		System.out.println("Ex5 - Q6 : Viết lệnh cho phép người dùng tạo department (viết thành method)");
-		Scanner sc5 = new Scanner(System.in);
-		System.out.println("Mời bạn nhập vào thông tin phòng ban");
-		Department dep = new Department();
-		System.out.println("Mời bạn nhập vào ID phòng ban");
-		dep.id = sc5.nextInt();
-		System.out.println("Mời bạn nhập tên phòng ban");
-		dep.name = sc5.next();
-		System.out.println("Thông tin phòng ban bạn vừa tạo : " + dep.id + "" + dep.name);
-
-//			Ex5 - Question 7
-		System.out.println("Nhập số chẵn từ console");
-
-//			Ex5 - Question 8
-		System.out.println("Viết chương trình thực hiện theo flow sau");
-		Scanner sc6 = new Scanner(System.in);
-		int choose;
-		while (true) {
-			System.out.println("Mời bạn chọn chức năng : 1. Tạo account, 2. Tạo Department");
-			choose = sc6.nextInt();
-			if (choose == 1 || choose == 2) {
-				switch (choose) {
-				case 1:
-					Scanner sc7 = new Scanner(System.in);
-					System.out.println("Mời bạn nhập vào thông tin account");
-					Account acc1 = new Account();
-					System.out.println("Mời bạn nhập vào ID ");
-					acc.id = sc7.nextInt();
-					System.out.println("Mời bạn nhập vào userName");
-					acc1.userName = sc7.next();
-					System.out.println("Mời bạn nhập vào fullName");
-					acc1.fullName = sc7.next();
-					System.out.println("Mời bạn nhập vào Email");
-					acc1.email = sc7.next();
-					System.out.println("Mời bạn nhập vào mã chức vụ :  1.DEV,  2.TEST, 3.SCRUM_MASTER, 4.PM ");
-					int posNum1 = sc7.nextInt();
-					switch (posNum1) {
-					case 1:
-						Position ps1 = new Position();
-						ps1.name = PositionName.DEV;
-						acc.pos = ps1;
-						break;
-					case 2:
-						Position ps2 = new Position();
-						ps2.name = PositionName.TEST;
-						acc.pos = ps2;
-						break;
-					case 3:
-						Position ps3 = new Position();
-						ps3.name = PositionName.SCRUM_MASTER;
-						acc.pos = ps3;
-						break;
-					case 4:
-						Position ps4 = new Position();
-						ps4.name = PositionName.PM;
-						acc.pos = ps4;
-						break;
-					default:
-						break;
-					}
-					System.out.println("Thông tin account mới nhập");
-					System.out.println("ID: " + acc.id);
-					System.out.println("userName: " + acc.userName);
-					System.out.println("FullName: " + acc.fullName);
-					System.out.println("Email: " + acc.email);
-					System.out.println("Chức Vụ: " + acc.pos.name);
-					break;
-				case 2:
-					Scanner sc8 = new Scanner(System.in);
-					System.out.println("Mời bạn nhập vào thông tin phòng ban");
-					Department dep0 = new Department();
-					System.out.println("Mời bạn nhập vào ID phòng ban");
-					dep0.id = sc8.nextInt();
-					System.out.println("Mời bạn nhập tên phòng ban");
-					dep0.name = sc8.next();
-					System.out.println("Thông tin phòng ban bạn vừa tạo : " + dep.id + "" + dep.name);
-				default:
-					break;
-				}
-				return;
-			} else {
-				System.out.println("Mời Nhập Lại");
+//		Ex6 - Question 2
+		System.out.println("Tạo method để in thông tin các account");
+		Scanner sc2 = new Scanner(System.in);
+		Account[] accArray8 = { ac1, ac2, ac3, ac4, ac5, ac6 };
+		for (int i8 = 0; i8 < accArray8.length; i8++) {
+			System.out.println("ID: " + accArray6[i8].id);
+			System.out.println("Email : " + accArray6[i8].email);
+			System.out.println("FullName : " + accArray6[i8].fullName);
+			System.out.println("PhòngBan : " + accArray6[i8].dep.name);
+			
+//		Ex6 - Question 3
+		System.out.println("Tạo method để in ra các số nguyên dương nhỏ hơn 10");
+		Scanner sc3 = new Scanner(System.in);
+		for (int z2 = 0; z2 < 10; z2++) {
+				System.out.println("số nguyên dương nhỏ hơn 10 là :");
+				System.out.println(z2 + "");		
 			}
 		}
-//		Ex5 - Question 9 
-		System.out.println("");
 	}
 }
+
