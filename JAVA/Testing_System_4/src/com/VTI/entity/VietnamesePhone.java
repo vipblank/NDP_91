@@ -5,44 +5,45 @@ import java.util.Iterator;
 import java.util.List;
 
 public class VietnamesePhone extends Phone {
-
-	private ArrayList<Contacts> contacts;
-
+	public ArrayList<Contacts> ListContacts;
 	public VietnamesePhone() {
-		contacts = new ArrayList<Contacts>();
+		ListContacts = new ArrayList<Contacts>();
 	}
 
 	@Override
 	public void insertContact(String name, String phone) {
-		Contacts contact = new Contacts(name, phone);
-		contacts.add(contact);		
+		Contacts contacts = new Contacts(name, phone);
+		ListContacts.add(contacts);	
 	}
 
 	@Override
 	public void removeContact(String name) {
-			Iterator<Contacts> iterator = contacts.iterator();
-			while (iterator.hasNext()) {
-				Contacts contacts = (Contacts) iterator.next();
-				if (contacts.getName().equals(name)) {
-					System.out.println(contacts);
-		}
+		Iterator<Contacts> iterator = ListContacts.iterator();
+		while (iterator.hasNext()) {
+			Contacts contacts = (Contacts) iterator.next();
+			if (contacts.getName().equals(name)) {
+				iterator.remove();
+			}
+		}	
 	}
-}
 
 	@Override
 	public void updateContact(String name, String newPhone) {
-		// TODO Auto-generated method stub
+		for (Contacts contacts : ListContacts) {
+			if (contacts.getName().equals(name)) {
+				contacts.setNumber(newPhone);
+				System.out.println("ThÃ´ng tin tÃ i khoáº£n sau update: " + contacts);
+			}
+		}
 	}
 
 	@Override
 	public void searchContact(String name) {
-		for (Contacts contacts2 : contacts) {
-			if (contacts2.getName().equals(name)) {
-				System.out.println(contacts2);
-			}else {
-				System.out.println("không có thông tin");
+		for (Contacts contacts : ListContacts) {
+			if (contacts.getName().equals(name)) {
+				System.out.println(contacts);
 			}
-		}
+		}	
 	}
 }
 	

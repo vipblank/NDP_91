@@ -16,14 +16,14 @@ public class Main_code {
 //		ex1.question2();
 //		ex1.question3();
 		
-		Exercise_4 ex4 = new Exercise_4();
-		ex4.question1();
+//		Exercise_4 ex4 = new Exercise_4();
+//		ex4.question1();
 		
 //		Exercise_5 ex5 = new Exercise_5();
 //		ex5.question2();
 		
-//		Exercise_6 ex6 = new Exercise_6();
-//		ex6.question1();
+		Exercise_6 ex6 = new Exercise_6();
+		ex6.question1();
 		
 //		Exercise7_Ex4_Q4 ex7 = new Exercise7_Ex4_Q4();
 //		ex7.question4();
