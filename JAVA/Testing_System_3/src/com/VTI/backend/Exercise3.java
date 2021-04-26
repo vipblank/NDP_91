@@ -1,5 +1,7 @@
 package com.VTI.backend;
 
+import java.util.Scanner;
+
 public class Exercise3 {
 	public void question1() {
 		System.out.println("Ex3 - Question1");
@@ -20,4 +22,5 @@ public class Exercise3 {
 		int z = i.intValue();
 		System.out.println(z);
 	}
+
 }
