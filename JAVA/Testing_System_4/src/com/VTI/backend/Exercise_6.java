@@ -66,5 +66,6 @@ public class Exercise_6 {
 		String findname = sc.next();
 		vnPhone.searchContact(findname);			
 	}
+	
 }
 

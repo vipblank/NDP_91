@@ -26,5 +26,7 @@ public abstract class User {
 	}
 	public abstract double calculatePay();
 	
+	
 	public abstract void displayInfor();
+	
 }

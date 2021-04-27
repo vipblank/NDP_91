@@ -596,7 +596,7 @@ public class Exercise1 {
 				}
 				a2++;
 		} while (a2 <= 20);
-
+		
 	}
 }
 
