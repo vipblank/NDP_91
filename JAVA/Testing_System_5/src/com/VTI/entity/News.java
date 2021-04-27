@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class News implements INews{
 	private int id;
-	private String title;
+	private String title; 
 	private LocalDate publishDate;
 	private String author;
 	private String content;
@@ -14,20 +14,32 @@ public class News implements INews{
 	private int rate1;
 	private int rate2;
 	private int rate3;
+	private int[] Rate = {rate1, rate2, rate3};
+	public ArrayList<News> listNews;
+	public ArrayList<News> listRate;
+	public News() {
+		listNews = new ArrayList<News>();
+	}
+	
+	@Override
+	public void Insert(int id, String title, LocalDate publishDate, String author, String content) {
+		News news = new News(id, title, publishDate, author, content);
+		listNews.add(news);	
+		
+	}
 	
 	@Override
 	public void Display() {
-		System.out.println("thông tin title: " + title);
-		System.out.println("thông tin publishDate:" + publishDate);
-		System.out.println("thông tin author: " + author);
-		System.out.println("thông tin content:" + content);
-		System.out.println("thông tin của averageRate: " + averageRate);
+		for (News news : listNews) {
+			System.out.println(news);
+		}		
 	}
 	@Override
-	public float Calculate() {
-		 News rateArray = new News(rate1, rate2, rate3);
-		 
-		return 0;
+	public float Caculate() {
+		for (int i : Rate) {
+			
+		}	
+		return averageRate = (float)(rate1 + rate2 + rate3)/3;
 	}
 	public int getId() {
 		return id;
@@ -60,7 +72,7 @@ public class News implements INews{
 		this.content = content;
 	}
 	public float getAverageRate() {
-		return averageRate;
+		return averageRate ;
 	}
 	@Override
 	public String toString() {
@@ -75,9 +87,9 @@ public class News implements INews{
 		this.author = author;
 		this.content = content;
 	}
-	public News(int rate12, int rate22, int rate32) {
-		// TODO Auto-generated constructor stub
+
+	public News(int rate1, int rate2, int rate3) {
+
 	}
 
-	
 }
