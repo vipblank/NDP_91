@@ -8,5 +8,6 @@ public interface INews {
 	  
 	  void Display();
 	
-	  float Caculate();  
+	  float Caculate(int id);  
+	  
 }

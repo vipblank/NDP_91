@@ -8,11 +8,11 @@ import com.VTI.entity.News;
 
 public class Exercise1 {
 	private Scanner sc;	
-	public News vnNews;
-	public static int count;
+	private News vnNews;
+	private static int count = 0;
 	public void question1() {
 		sc = new Scanner(System.in);
-		vnNews = new News();
+		News vnNews = new News();
 		while (true) {
 			System.out.println("========================================================");
 			System.out.println("================ Lựa Chọn Chức Năng ====================");
@@ -55,20 +55,18 @@ public class Exercise1 {
 		String addauthor = sc.next();
 		System.out.println("Mời bạn nhập vào content");
 		String addcontent = sc.next();
-		System.out.println("Mời bạn nhập vào đánh giá thứ 1");
-		int addrate1 = sc.nextInt();
-		System.out.println("Mời bạn nhập vào đánh giá thứ 2");
-		int addrate2 = sc.nextInt();
-		System.out.println("Mời bạn nhập vào đánh giá thứ 3");
-		int addrate3 = sc.nextInt();
 		count++;
 		vnNews.Insert(count, addtitle, publishDate1, addauthor, addcontent);
-		
 	}
 	public void Viewlistnews() {
 		vnNews.Display();
 	}
 	public void Averagerate() {
+		System.out.println("Mời bạn nhập vào id");
+		int id1 = sc.nextInt();
+		vnNews.Caculate(id1);
+	}
+	public void question2() {
 		
 	}
 }

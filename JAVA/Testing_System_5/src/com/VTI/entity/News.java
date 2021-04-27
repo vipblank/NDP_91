@@ -1,6 +1,5 @@
 package com.VTI.entity;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -10,24 +9,17 @@ public class News implements INews{
 	private LocalDate publishDate;
 	private String author;
 	private String content;
-	private float averageRate;
-	private int rate1;
-	private int rate2;
-	private int rate3;
-	private int[] Rate = {rate1, rate2, rate3};
+	private float averageRate;;
 	public ArrayList<News> listNews;
-	public ArrayList<News> listRate;
 	public News() {
-		listNews = new ArrayList<News>();
+		listNews = new ArrayList<News>();	
 	}
-	
 	@Override
 	public void Insert(int id, String title, LocalDate publishDate, String author, String content) {
 		News news = new News(id, title, publishDate, author, content);
 		listNews.add(news);	
 		
 	}
-	
 	@Override
 	public void Display() {
 		for (News news : listNews) {
@@ -35,11 +27,15 @@ public class News implements INews{
 		}		
 	}
 	@Override
-	public float Caculate() {
-		for (int i : Rate) {
-			
+	public float Caculate(int id) {
+		for (News news : listNews) {
+			if (news.getId() == id) {
+				float averageRate = 0;
+				int[] rate = {5,10,15};
+				averageRate += (rate[0] + rate[1] + rate[2])/3;
+			}
 		}	
-		return averageRate = (float)(rate1 + rate2 + rate3)/3;
+		return  averageRate;
 	}
 	public int getId() {
 		return id;
@@ -74,10 +70,11 @@ public class News implements INews{
 	public float getAverageRate() {
 		return averageRate ;
 	}
+
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", publishDate=" + publishDate + ", author=" + author
-				+ ", content=" + content + ", averageRate=" + averageRate + "]";
+				+ ", content=" + content + "]";
 	}
 	public News(int id, String title, LocalDate publishDate, String author, String content) {
 		super();
@@ -86,10 +83,6 @@ public class News implements INews{
 		this.publishDate = publishDate;
 		this.author = author;
 		this.content = content;
-	}
-
-	public News(int rate1, int rate2, int rate3) {
-
 	}
 
 }
