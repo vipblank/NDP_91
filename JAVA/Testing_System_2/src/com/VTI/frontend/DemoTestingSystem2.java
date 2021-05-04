@@ -299,7 +299,7 @@ public class DemoTestingSystem2 {
 		if (ac2.dep == null) {
 			System.out.println("Nhân Viên Chưa Có Phòng Ban");
 		} else {
-			System.out.println("Phòng Số:" + ac2.dep.id);
+			System.out.println("Phòng Số:" + ac2.dep.id + "" + ac2.dep.name);
 		}
 
 //		Ex1 - Question 2

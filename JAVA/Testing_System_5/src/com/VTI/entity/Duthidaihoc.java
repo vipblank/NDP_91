@@ -1,48 +1,35 @@
 package com.VTI.entity;
 
+import java.util.ArrayList;
+
 public class Duthidaihoc {
+	public static int count = 0;
 	private int sobaodanh;
 	private String hoten;
 	private String diachi;
 	private Mucuutien mucuutien;
+	private Khoithi khoithi;
 	public enum Mucuutien{
 		CAO,THAP
 	}
-	public Duthidaihoc(int sobaodanh, String hoten, String diachi, Mucuutien mucuutien) {
-		super();
-		this.sobaodanh = sobaodanh;
+	public Duthidaihoc( String hoten, String diachi, Mucuutien mucuutien, Khoithi khoithi) {
+		count++;
+		this.sobaodanh = count;
 		this.hoten = hoten;
 		this.diachi = diachi;
 		this.mucuutien = mucuutien;
+		this.khoithi = khoithi;
 	}
+
 	public int getSobaodanh() {
 		return sobaodanh;
 	}
-	public void setSobaodanh(int sobaodanh) {
-		this.sobaodanh = sobaodanh;
-	}
-	public String getHoten() {
-		return hoten;
-	}
-	public void setHoten(String hoten) {
-		this.hoten = hoten;
-	}
-	public String getDiachi() {
-		return diachi;
-	}
-	public void setDiachi(String diachi) {
-		this.diachi = diachi;
-	}
-	public Mucuutien getMucuutien() {
-		return mucuutien;
-	}
-	public void setMucuutien(Mucuutien mucuutien) {
-		this.mucuutien = mucuutien;
-	}
+
 	@Override
 	public String toString() {
 		return "Duthidaihoc [sobaodanh=" + sobaodanh + ", hoten=" + hoten + ", diachi=" + diachi + ", mucuutien="
-				+ mucuutien + "]";
+				+ mucuutien + ", khoithi=" + khoithi.getMonthi() + "]";
 	}
+
 
 }	

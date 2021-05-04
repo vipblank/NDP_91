@@ -2,10 +2,10 @@ package com.VTI.entity;
 
 public interface ITuyenSinh {
 	
-	void add();
+public	void add();
 	
-	void show();
+public	void show();
 	
-	void search();
+public	void search();
 	
 }

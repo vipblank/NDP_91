@@ -20,6 +20,6 @@ public class Exercise1 {
 		System.out.println("Mời bạn nhập vào số thứ 2 :");
 		int b = sc1.nextInt();
 		float c = (float)a / b;
-		System.out.println("thương của 2 số là : " + c);
+		System.out.println("thương của 2 số là : " + (float)c);
 	}
 }

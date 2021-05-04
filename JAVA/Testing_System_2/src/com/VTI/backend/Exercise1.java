@@ -18,7 +18,7 @@ import com.VTI.entity.Position.PositionName;
 
 public class Exercise1 {
 	
-		public void question1() {
+		public static void question() {
 //			create department
 			Department dep1 = new Department();
 			dep1.id = 1;
@@ -295,13 +295,12 @@ public class Exercise1 {
 			as8.quesid = Q4;
 			
 //			Ex1 - Question 1		
-			System.out.println("Ex1-Q1 : Kiểm tra account thứ 2");
-			if ( ac2.dep == null) {
-				System.out.println("Nhân Viên Chưa Có Phòng Ban");
-			} else {
-				System.out.println("Phòng Số:" + ac2.dep.id);
+			System.out.println("kiểm tra account thứ 2:");
+			if (ac2.dep == null) {
+				System.out.println("nhân viên này chưa có phòng ban");
+			}else {
+				System.out.println("Phòng ban của nhân viên này là: " + ac2.dep.name);
 			}
-
 //			Ex1 - Question 2
 			System.out.println("Ex1-Q2 : Kiểm tra account thứ 2");
 			if (ac2.groups == null) {
@@ -597,7 +596,7 @@ public class Exercise1 {
 				a2++;
 		} while (a2 <= 20);
 		
-	}
+		}
 }
 
 

@@ -50,6 +50,7 @@ public class Exercise7_Ex4_Q4 {
 			}
 		}
 	}
+
 	public void addTailieu() {
 		while (true) {
 			System.out.println("========================================================");
@@ -116,6 +117,7 @@ public class Exercise7_Ex4_Q4 {
 			}
 		}
 	}
+
 	public void deleteTailieu() {
 		System.out.println("Nhập vào mã tài liệu bạn muốn xóa");
 		int deletecode = sc.nextInt();
@@ -125,13 +127,15 @@ public class Exercise7_Ex4_Q4 {
 			if (tailieu2.getMatailieu() == deletecode) {
 				iterator.remove();
 			}
-		}	
+		}
 	}
+
 	public void showTailieu() {
-				for (Tailieu tailieu : listTailieu) {
-					System.out.println(tailieu);
-				}
+		for (Tailieu tailieu : listTailieu) {
+			System.out.println(tailieu);
+		}
 	}
+
 	public void searchTailieu() {
 		while (true) {
 			System.out.println("========================================================");

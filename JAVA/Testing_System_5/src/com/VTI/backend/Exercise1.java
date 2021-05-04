@@ -7,12 +7,12 @@ import java.util.Scanner;
 import com.VTI.entity.News;
 
 public class Exercise1 {
-	private Scanner sc;	
-	private News vnNews;
-	private static int count = 0;
+	public Scanner sc;	
+	public News vnNews;
+	public static int count = 0;
 	public void question1() {
 		sc = new Scanner(System.in);
-		News vnNews = new News();
+		vnNews = new News();
 		while (true) {
 			System.out.println("========================================================");
 			System.out.println("================ Lựa Chọn Chức Năng ====================");
@@ -20,7 +20,6 @@ public class Exercise1 {
 			System.out.println("================ 2: View list news =====================");
 			System.out.println("================ 3: Average rate =======================");
 			System.out.println("================ 4: Exit ===============================");
-			System.out.println("================ 5: Thoát khỏi chương trình=============");
 			int menu = sc.nextInt();
 			switch (menu) {
 			case 1:
@@ -55,18 +54,26 @@ public class Exercise1 {
 		String addauthor = sc.next();
 		System.out.println("Mời bạn nhập vào content");
 		String addcontent = sc.next();
+		System.out.println("Mời bạn nhập vào đánh giá 1");
+		int addrate1 = sc.nextInt();
+		System.out.println("Mời bạn nhập vào đánh giá 2");
+		int addrate2 = sc.nextInt();
+		System.out.println("Mời bạn nhập vào đánh giá 3");
+		int addrate3 = sc.nextInt();
+		int[] rates = {addrate1, addrate2, addrate3};
 		count++;
-		vnNews.Insert(count, addtitle, publishDate1, addauthor, addcontent);
+		vnNews.Insert(count, addtitle, publishDate1, addauthor, addcontent, rates);
+		
 	}
 	public void Viewlistnews() {
 		vnNews.Display();
 	}
 	public void Averagerate() {
-		System.out.println("Mời bạn nhập vào id");
+		System.out.println("Mời nhập vào id");
 		int id1 = sc.nextInt();
 		vnNews.Caculate(id1);
 	}
 	public void question2() {
-		
+//		Check file TuyenSinh - entity
 	}
 }

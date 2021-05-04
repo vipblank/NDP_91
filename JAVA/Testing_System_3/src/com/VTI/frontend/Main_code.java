@@ -34,5 +34,14 @@ public class Main_code {
 //		ex5.question4();
 //		ex5.question5();
 //		ex5.question6();
+//		ex4.question7();
+//		ex4.question10();
+//		ex4.question11();
+//		ex4.question12();
+//		ex4.question13();
+//		ex4.question14();
+//		ex4.question15();
+		ex4.question16();
+
 	}
 }	

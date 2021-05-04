@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public interface INews {
 	
-	  void Insert(int id, String title, LocalDate publishDate, String author, String content); 
+	  void Insert(int id, String title, LocalDate publishDate, String author, String content, int[]rate); 
 	  
 	  void Display();
 	
-	  float Caculate(int id);  
+	  void Caculate(int id);  
 	  
 }
