@@ -8,8 +8,10 @@ import com.VTI.backend.Exercise5;
 
 public class Main_code {
 	public static void main(String[] args) {
-//		Exercise1 ex1 = new Exercise1();
+		Exercise1 ex1 = new Exercise1();
 //		ex1.question1();
+		ex1.question2();
+		ex1.question3();
 //		ex1.question4();
 //		
 //		Exercise2 ex2 = new Exercise2();
@@ -24,8 +26,8 @@ public class Main_code {
 //		ex4.question1();
 //		ex4.question2();
 //		ex4.question3();
-		ex4.question4();
-		ex4.question5();
+//		ex4.question4();
+//		ex4.question5();
 		
 //		Exercise5 ex5 = new Exercise5();
 //		ex5.question1();
@@ -41,7 +43,7 @@ public class Main_code {
 //		ex4.question13();
 //		ex4.question14();
 //		ex4.question15();
-		ex4.question16();
+//		ex4.question16();
 
 	}
 }	

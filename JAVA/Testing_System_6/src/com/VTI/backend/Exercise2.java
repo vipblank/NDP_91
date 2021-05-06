@@ -66,5 +66,7 @@ public class Exercise2 {
 		System.out.println("thông tin position vừa nhập: ");
 		System.out.println(position);
 	}
-	
+	public void question10() {
+//		check class group + account
+	}
 }

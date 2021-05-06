@@ -67,4 +67,19 @@ public class ScannerUltis {
 			}
 		}		
 	}
+	public static int inputScore() {
+		while (true) {
+			try {
+				int inputInt2 = Integer.parseInt(sc.next().trim());
+				if (inputInt2 > 0 && inputInt2 <= 10) {
+					return inputInt2;
+				}else {
+					System.err.println("Wrong inputing! please input again");	
+				}
+			} catch (Exception e) {
+						System.err.println("wrong inputing! Please input an age as int, input again");	
+			}
+		}		
+	}
+	
 }

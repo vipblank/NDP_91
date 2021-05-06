@@ -23,14 +23,14 @@ public class Main_code {
 //		Exercise_5 ex5 = new Exercise_5();
 //		ex5.question2();
 		
-//		Exercise_6 ex6 = new Exercise_6();
-//		ex6.question1();
+		Exercise_6 ex6 = new Exercise_6();
+		ex6.question1();
 		
 //		Exercise7_Ex4_Q4 ex7 = new Exercise7_Ex4_Q4();
 //		ex7.question4();
 
-		Exercise_5_Q3 ex5_3 = new Exercise_5_Q3();
-		ex5_3.question1();
+//		Exercise_5_Q3 ex5_3 = new Exercise_5_Q3();
+//		ex5_3.question1();
 	}
 }
 

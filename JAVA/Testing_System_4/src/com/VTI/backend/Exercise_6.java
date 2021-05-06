@@ -22,7 +22,11 @@ public class Exercise_6 {
 		int luachon = sc.nextInt();
 		switch (luachon) {
 		case 1:
-			insertContact();
+			System.out.println("Mời nhập tên Contact");
+			String addname = sc.next();
+			System.out.println("Mời nhập số Phone");
+			String addphone = sc.next();
+			vnPhone.insertContact(addname, addphone);
 			break;
 		case 2:
 			removeContact();
@@ -43,11 +47,7 @@ public class Exercise_6 {
 		}
 	}
 	public void insertContact() {
-		System.out.println("Mời nhập tên Contact");
-		String addname = sc.next();
-		System.out.println("Mời nhập số Phone");
-		String addphone = sc.next();
-		vnPhone.insertContact(addname, addphone);
+		
 	}
 	public void removeContact() {
 		System.out.println("Nhập tên Contact bạn muốn xóa ");

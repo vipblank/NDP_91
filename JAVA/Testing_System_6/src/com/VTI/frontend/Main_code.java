@@ -19,8 +19,8 @@ public class Main_code {
 //		ex2.question9();
 //		ex2.question9_2();
 		
-//		Group group = new Group();
-//		System.out.println(group);
+		Group group = new Group();
+		System.out.println(group);
 		
 		
       

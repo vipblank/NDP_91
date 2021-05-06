@@ -1,6 +1,9 @@
 package com.VTI.backend;
 
+import java.util.Random;
 import java.util.Scanner;
+
+import javax.annotation.Generated;
 
 public class Exercise1 {
 	public void question1() {
@@ -11,6 +14,25 @@ public class Exercise1 {
 		int b = (int) luong2;
 		System.out.println("luong account1 : " + a );
 		System.out.println("luong account2 : " + b);
+	}
+	public void question2() {
+		int min = 0;
+		int max = 99999;
+		int number = (int)(Math.random()*max) + min;
+		while (number < 10000) {
+			number = number*10;
+		}
+		System.out.println("số ngẫu nhiên là: " + number);
+	}
+	public void question3() {
+		int min = 0;
+		int max = 99999;
+		int number = (int)(Math.random()*max) + min;
+		while (number < 10000) {
+			number = number*10;
+		}
+		String str = String.valueOf(number);
+		System.out.println("2 số cuối: " + number + " là: " + str.substring(3));
 	}
 	public void question4() {
 		System.out.println("Ex1 - Question4");

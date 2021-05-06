@@ -23,7 +23,7 @@ public class Group {
 		count++;
 		System.out.println("Mời nhập tên group");
 		this.name = ScannerUltis.inputString();
-		System.out.println("Mời nhập ngày tạo group: yyyy-MM-dd");
+		System.out.println("Mời nhập ngày tạo group theo định dạng: yyyy-MM-dd");
 		CreateDate = ScannerUltis.inputLocalDate();
 		System.out.println("Bạn có muốn thêm account vào group hay không : 1.Có, 2.Không");
 		while (true) {
