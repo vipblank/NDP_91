@@ -62,11 +62,11 @@ public class FileUltis {
 	public static void isFolderOrFile(String pathFile) {
 		File file = new File(pathFile);
 		if (file.isDirectory()) {
-			System.out.println("Ä�Ã¢y lÃ  1 Foder");
+			System.out.println("Đây là 1 Foder");
 		} else if (file.isFile()) {
-			System.out.println("Ä�Ã¢y lÃ  1 file");
+			System.out.println("Đây là 1 File");
 		} else {
-			System.out.println("Ä�Ã¢y khÃ´ng pháº£i Ä‘Æ°á»�ng dÃ£n, cÅ©ng khÃ´ng pháº£i file");
+			System.out.println("Đây không phải đường dẫn, cũng không phải file");
 		}
 	}
 
@@ -81,7 +81,7 @@ public class FileUltis {
 
 		File file = new File(path);
 		if (!isFolder(path)) {
-			System.out.println("Ä�Ã¢y khÃ´ng pháº£i lÃ  Ä‘Æ°á»�ng dáº«n!!");
+			System.out.println("Đây không phải đường dẫn!!");
 			return null;
 		} else {
 			return file.list();

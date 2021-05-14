@@ -8,7 +8,9 @@ public class Main_code {
 		Exercise1 ex1 = new Exercise1();
 //		ex1.question1_2_4();
 //		ex1.question5();
-		ex1.question6();
+//		ex1.question6();
+		
+		
 	}		
 	
 }

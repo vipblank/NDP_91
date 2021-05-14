@@ -10,8 +10,8 @@ import com.VTI.ultis.ScannerUltis;
 
 public class Exercise1 {
 	public static int count = 0;
-	public static int count1 = 0;
-	public static int count2 = 0;
+	public int count1 = 0;
+	public int count2 = 0;
 	private static ArrayList<Student> listStudent;
 	private static ArrayList<PrimaryStudent> listPri;
 	private static ArrayList<SecondaryStudent> listSec;
@@ -74,7 +74,7 @@ public class Exercise1 {
 			switch (choose) {
 			case 1:
 				System.out.println("Mời nhập vào tên sinh viên");
-				String name = ScannerUltis.inputString();			
+				String name = ScannerUltis.inputString();
 					System.out.println("Bạn muốn khởi tạo PrimaryStudent hay SecondaryStudent: 1.PrimaryStudent, 2.SecondaryStudent");
 					int choose1 = ScannerUltis.inputInt2();
 					switch (choose1) {
@@ -103,7 +103,8 @@ public class Exercise1 {
 						continue;
 					}										
 			case 2:
-				System.out.println(" Số PrimaryStudent được tạo ra là: " + PrimaryStudent.countPri + " Số SecondaryStudent được tạo ra là: " + SecondaryStudent.countSec);
+				System.out.println("Số PrimaryStudent được tạo ra là: " + PrimaryStudent.countPri + " Số SecondaryStudent được tạo ra là: " + SecondaryStudent.countSec);
+				System.out.println("Thông tin PrimaryStudent đã khởi tạo: " + listPri.toString() + "\nThông tin SecondaryStudent đã khởi tạo: " + listSec.toString());
 				System.out.println("chương trình kết thúc");
 				return;
 			default:

@@ -8,4 +8,5 @@ public class PrimaryStudent extends Student{
 		countPri++;
 		
 	}
+
 }
