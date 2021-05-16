@@ -1,22 +1,18 @@
 package com.VTI.ultis;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ScannerUltis {
 	private static Scanner sc = new Scanner(System.in);
-	private static jdbcUltis jdbc;
 
 	public static int inputInt() {
 		while (true) {
 			try {
 				return Integer.parseInt(sc.next().trim());
 			} catch (Exception e) {
-				System.err.println("Mời nhập lại");
+				System.err.println("Sai định dạng. Phải nhập vào số");
 			}
 		}
 	}
@@ -28,10 +24,10 @@ public class ScannerUltis {
 				if (inputInt2 > 0) {
 					return inputInt2;
 				} else {
-					System.err.println("Wrong inputing! please input again");
+					System.err.println("Sai định dạng. Phải nhập vào số");
 				}
 			} catch (Exception e) {
-				System.err.println("wrong inputing! input again");
+				System.err.println("Sai định dạng. Phải nhập vào số");
 			}
 		}
 	}
@@ -42,7 +38,7 @@ public class ScannerUltis {
 				Float inputFloadt = Float.parseFloat(sc.next().trim());
 				return inputFloadt;
 			} catch (Exception e) {
-				System.err.println("Mời nhập lại");
+				System.err.println("Sai định dạng. Phải nhập vào số");
 			}
 		}
 	}
@@ -58,7 +54,7 @@ public class ScannerUltis {
 					return lc;
 				}
 			} catch (Exception e) {
-				System.err.println("Mời nhập lại");
+				System.err.println("Sai định dạng. Phải nhập theo định dạng: yyyy-MM-dd");
 			}
 		}
 	}
@@ -69,7 +65,7 @@ public class ScannerUltis {
 			if (!input.isEmpty()) {
 				return input;
 			} else {
-				System.err.println("Mời nhập lại");
+				System.err.println("Không thể để trống");
 			}
 		}
 	}
@@ -81,10 +77,10 @@ public class ScannerUltis {
 				if (inputInt2 > 0 && inputInt2 <= 10) {
 					return inputInt2;
 				} else {
-					System.err.println("Wrong inputing! please input again");
+					System.err.println("Sai định dạng. Mời nhập lại");
 				}
 			} catch (Exception e) {
-				System.err.println("wrong inputing! Please input an age as int, input again");
+				System.err.println("Sai định dạng. Mời nhập lại");
 			}
 		}
 	}
@@ -92,8 +88,8 @@ public class ScannerUltis {
 	public static String inputEmail() {
 		while (true) {
 			String email = ScannerUltis.inputString();
-			if (email == null || !email.contains("@")) {
-				System.err.println("Xin nhập đúng định dạng email: ...@...");
+			if (email == null || !email.contains("%w@vti.com.vn")) {
+				System.err.println("Xin nhập đúng định dạng email: ...@vti.com.vn");
 			} else {
 				return email;
 			}
@@ -138,11 +134,11 @@ public class ScannerUltis {
 		while (true) {
 			String phonnumber = ScannerUltis.inputString();
 			if (phonnumber.length() < 9 || phonnumber.length() > 12) {
-				System.err.println("Mời nhập lại");
+				System.err.println("Không thể nhập quá 12 số");
 				continue;
 			}
 			if (phonnumber.charAt(0) != '0') {
-				System.err.println("Mời nhập lại");
+				System.err.println("Số đầu tiên phải là 0");
 				continue;
 			}
 			boolean isNumber = true;
@@ -156,6 +152,27 @@ public class ScannerUltis {
 				return phonnumber;
 			}else {
 				System.err.println("Mời nhập lại theo định dạng");
+			}
+		}
+	}
+
+	public static String inputFullname() {
+		while (true) {
+			boolean flag = true;
+			boolean flag1 = true;
+			String ckeckname = "\\D+";
+			String checkname1 = "\\w+";
+			String fullname = ScannerUltis.inputString();
+			flag = fullname.matches(ckeckname);
+			flag1 = fullname.matches(checkname1);
+			if (!flag) {
+				System.err.println("Tên chỉ bao gôm chữ cái. Mời nhập lại");
+				continue;
+			}else if (!flag1) {
+				System.err.println("Tên chỉ bao gôm chữ cái. Mời nhập lại");
+				continue;
+			}else {
+				return fullname;
 			}
 		}
 	}
