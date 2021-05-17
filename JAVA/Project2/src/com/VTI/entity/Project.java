@@ -4,6 +4,7 @@ public class Project {
 	private int projectID;
 	private String projectName;
 	private Manager manager;
+	private Manager manager1;
 	private int teamSize;
 	
 	public Project(int projectID, String projectName, Manager manager, int teamSize) {
@@ -35,11 +36,19 @@ public class Project {
 	public int getManager() {
 		return manager.getId();
 	}
+	
+	public String getManager11() {
+		return manager.getFullname();
+		
+	}
 
 	public void setManager(Manager manager) {
 		this.manager = manager;
 	}
-
+	
+	public void setManager1(Manager manager) {
+		this.manager1 = manager;
+	}
 	public int getTeamSize() {
 		return teamSize;
 	}
@@ -53,5 +62,4 @@ public class Project {
 		return "Project [projectID=" + projectID + ", projectName=" + projectName + ", manager=" + manager
 				+ ", teamSize=" + teamSize + "]";
 	}
-		
 }

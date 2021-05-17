@@ -11,16 +11,18 @@ import com.VTI.entity.Project;
 import com.VTI.entity.ProjectTeam;
 
 public interface IMethod_Repository {
-		
-	public boolean EmployeeLogin(String email, String password) throws SQLException, ClassNotFoundException;
 	
+	public void Login1(String email, String password) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException;
+	
+	public boolean EmployeeLogin(String email, String password) throws SQLException, ClassNotFoundException;
+		
 	public boolean ManagerLogin(String email, String password) throws ClassNotFoundException, SQLException;
 	
 	public boolean AdminLogin(String email, String password) throws SQLException, ClassNotFoundException;
 	
 	public List<ProjectTeam> ProjectTeamInfor(int id) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException;
 	
-	public List<Project> GetManagerAtProject() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException;
+	public List<Project> GetManagerAtProject1() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException;
 	
 	public List<Employee> GetListEmployee() throws ClassNotFoundException, SQLException;
 	
@@ -34,11 +36,23 @@ public interface IMethod_Repository {
 	
 	public Project GetProjectbyID(int id) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException;
 	
-	public void UpdateEmployee();
+	public boolean CreateManager(String fullname, String Email, String password, int ExplnYear) throws ClassNotFoundException, SQLException;
 	
-	public void UpdateManager();
+	public boolean CreateEmployee(String fullname, String Email, String password, String ProSkill) throws ClassNotFoundException, SQLException;
 	
-	public void DeleteEmployee();
+	public boolean CreateProject(String projectName, int managerID, int teamsize) throws ClassNotFoundException, SQLException;
 	
-	public void DeleteManager();
+	public boolean UpdateManager();
+	
+	public boolean UpdateEmployee();
+	
+	public boolean UpdateProject(int PjID) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException;
+	
+	public boolean DeleteManager();
+	
+	public boolean DeleteEmployee();
+	
+	public boolean DeleteProject(int PjID);
+
+
 }

@@ -88,7 +88,7 @@ public class ScannerUltis {
 	public static String inputEmail() {
 		while (true) {
 			String email = ScannerUltis.inputString();
-			if (email == null || !email.contains("%w@vti.com.vn")) {
+			if (email == null || !email.contains("@vti.com.vn")) {
 				System.err.println("Xin nhập đúng định dạng email: ...@vti.com.vn");
 			} else {
 				return email;

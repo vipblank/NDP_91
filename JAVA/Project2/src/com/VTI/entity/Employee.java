@@ -1,7 +1,7 @@
 package com.VTI.entity;
 
 public class Employee extends User{
-	private String proskill;
+private String proskill;
 	
 	public Employee(int id, String fullname, String email, String password, String proskill) {
 		super(id, fullname, email, password);
@@ -20,5 +20,4 @@ public class Employee extends User{
 	public String toString() {
 		return super.toString() + "Employee [proskill=" + proskill + "]";
 	}
-
 }

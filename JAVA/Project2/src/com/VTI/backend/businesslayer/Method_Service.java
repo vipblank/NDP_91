@@ -13,6 +13,12 @@ import com.VTI.entity.ProjectTeam;
 
 public class Method_Service implements IMethod_Service{
 	private Method_Repository methodRepository;
+	
+	@Override
+	public void Login1(String email, String password) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException{
+		
+	}
+	
 	@Override
 	public boolean EmployeeLogin(String email, String password) throws SQLException, ClassNotFoundException {
 		
@@ -39,10 +45,10 @@ public class Method_Service implements IMethod_Service{
 	}
 
 	@Override
-	public List<Project> GetManagerAtProject()
+	public List<Project> GetManagerAtProject1()
 			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		
-		return methodRepository.GetManagerAtProject();
+		return methodRepository.GetManagerAtProject1();
 	}
 
 	@Override
@@ -80,6 +86,60 @@ public class Method_Service implements IMethod_Service{
 			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		
 		return methodRepository.GetProjectbyID(id);
+	}
+
+	@Override
+	public boolean CreateManager(String fullname, String Email, String password, int ExplnYear) throws ClassNotFoundException, SQLException {
+		
+		return methodRepository.CreateManager(fullname, Email, password, ExplnYear);
+	}
+
+	@Override
+	public boolean CreateEmployee(String fullname, String Email, String password, String ProSkill) throws ClassNotFoundException, SQLException {
+		
+		return methodRepository.CreateEmployee(fullname, Email, password, ProSkill);
+	}
+
+	@Override
+	public boolean CreateProject(String projectName, int managerID, int teamsize) throws ClassNotFoundException, SQLException {
+		
+		return methodRepository.CreateProject(projectName, managerID, teamsize);
+	}
+
+	@Override
+	public boolean UpdateManager() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean UpdateEmployee() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean UpdateProject(int PjID) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		
+		return methodRepository.UpdateProject(PjID);
+	}
+
+	@Override
+	public boolean DeleteManager() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean DeleteEmployee() {
+		
+		return false;
+	}
+
+	@Override
+	public boolean DeleteProject(int PjID) {
+		
+		return methodRepository.DeleteProject(PjID);
 	}
 
 }
