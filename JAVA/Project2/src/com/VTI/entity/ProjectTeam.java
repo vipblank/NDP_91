@@ -2,6 +2,7 @@ package com.VTI.entity;
 
 public class ProjectTeam {
 	private Project project;
+	private Project project1;
 	private Manager manager;
 	private Employee employee;
 	private Manager manager1;
@@ -19,11 +20,17 @@ public class ProjectTeam {
 	public int getProject() {
 		return project.getProjectID();
 	}
-
+	
+	public String getProject1() {
+		return project1.getProjectName();
+	}
 	public void setProject(Project project) {
 		this.project = project;
 	}
-
+	
+	public void setProject1(Project project1) {
+		this.project1 = project1;
+	}
 	public int getManager() {
 		return manager.getId();
 	}

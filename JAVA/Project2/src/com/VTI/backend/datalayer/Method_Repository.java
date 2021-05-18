@@ -131,6 +131,41 @@ public class Method_Repository implements IMethod_Repository {
 		}
 		return listPjTeam;
 	}
+	
+	public List<ProjectTeam> ProjectTeamInfor(String PjName)
+			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		String sql = "SELECT pjt.ProjectID, pj.ProjectName, pjt.ManagerID, mg.Fullname AS mgName, pjt.EmployeeID, ep.Fullname AS epName FROM db_quanlynhanvien.projectteam pjt\r\n" + 
+				"INNER JOIN employee ep ON ep.EmployeeID = pjt.EmployeeID\r\n" + 
+				"INNER JOIN manager mg ON mg.ManagerID = pjt.ManagerID\r\n" + 
+				"INNER JOIN project pj ON pj.ProjectID = pjt.ProjectID\r\n" + 
+				"WHERE pj.ProjectName = ?;";	
+		PreparedStatement preparedStatement = jdbc.createPrepareStatement(sql);
+		preparedStatement.setString(1, PjName);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		List<ProjectTeam> listPjTeam = new ArrayList<ProjectTeam>();
+		while (resultSet.next()) {
+			ProjectTeam projectTeam = new ProjectTeam();
+			Method_Repository method_Repository = new Method_Repository();
+
+			Project project = method_Repository.GetProjectbyID(resultSet.getInt(1));
+			projectTeam.setProject(project);
+			Project project1 = method_Repository.GetProjectbyName(resultSet.getString(2));
+			projectTeam.setProject1(project1);
+			
+			Manager manager = method_Repository.GetManagerbyID(resultSet.getInt(3));
+			projectTeam.setManager(manager);
+			Manager manager1 = method_Repository.GetManagerbyName(resultSet.getString(4));
+			projectTeam.setManager1(manager1);
+
+			Employee employee = method_Repository.GetEmployeebyID(resultSet.getInt(5));
+			projectTeam.setEmployee(employee);
+			Employee employee1 = method_Repository.GetEmployeeByName(resultSet.getString(6));
+			projectTeam.setEmployee1(employee1);
+			
+			listPjTeam.add(projectTeam);
+		}
+		return listPjTeam;
+	}
 
 	@Override
 	public List<Project> GetManagerAtProject1()
@@ -227,10 +262,28 @@ public class Method_Repository implements IMethod_Repository {
 			project.setTeamSize(resultSet.getInt(4));
 			return project;
 
-		} else {
-			System.out.println("Không tìm thấy thông tin");
+		} 
 			return null;
-		}
+	}
+	
+	public Project GetProjectbyName(String PjName)
+			throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+		String sql = "SELECT * FROM db_quanlynhanvien.project WHERE ProjectName = ?;";
+		PreparedStatement preparedStatement = jdbc.createPrepareStatement(sql);
+		preparedStatement.setString(1, PjName);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			Project project = new Project();
+			project.setProjectID(resultSet.getInt(1));
+			project.setProjectName(resultSet.getString(2));
+			Method_Repository method_Repository = new Method_Repository();
+			Manager manager = method_Repository.GetManagerbyID(resultSet.getInt(3));
+			project.setManager(manager);
+			project.setTeamSize(resultSet.getInt(4));
+			return project;
+
+		} 
+			return null;
 	}
 
 	@Override
@@ -240,7 +293,7 @@ public class Method_Repository implements IMethod_Repository {
 		List<Employee> listEp = new ArrayList<Employee>();
 		while (resultSet.next()) {
 			Employee employee = new Employee(resultSet.getInt("EmployeeID"), resultSet.getString("Fullname"),
-					resultSet.getString("Email"), resultSet.getString("Password"), resultSet.getString("ProSkill"));
+					resultSet.getString("EpEmail"), resultSet.getString("Password"), resultSet.getString("ProSkill"));
 			listEp.add(employee);
 		}
 		return listEp;
@@ -253,7 +306,7 @@ public class Method_Repository implements IMethod_Repository {
 		List<Manager> listMg = new ArrayList<Manager>();
 		while (resultSet.next()) {
 			Manager manager = new Manager(resultSet.getInt("ManagerID"), resultSet.getString("Fullname"),
-					resultSet.getString("Email"), resultSet.getString("Password"), resultSet.getInt("ExplnYear"));
+					resultSet.getString("MgEmail"), resultSet.getString("Password"), resultSet.getInt("ExplnYear"));
 			listMg.add(manager);
 		}
 		return listMg;

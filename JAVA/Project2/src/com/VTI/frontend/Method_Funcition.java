@@ -21,14 +21,16 @@ public class Method_Funcition {
 		String password = ScannerUltis.inputPassword();
 		Method_Repository methodRepository = new Method_Repository();
 		if (methodRepository.AdminLogin(email, password)) {
-			System.out.println("Đăng nhập quyền admin thành công");
+			System.out.println("Đăng nhập thành công");
 			AdminWorks();
 		} else if (methodRepository.EmployeeLogin(email, password)) {
-			System.out.println("Đăng nhập quyền employee thành công");
+			System.out.println("Đăng nhập thành công");
 			EmployeeWorks();
 		} else if (methodRepository.ManagerLogin(email, password)) {
-			System.out.println("Đăng nhập quyền manager thành công");
+			System.out.println("Đăng nhập thành công");
 			ManagerWorks();
+		}else {
+			System.err.println("Email - mật khẩu không đúng. Xin thử lại");
 		}
 	}
 
@@ -38,7 +40,7 @@ public class Method_Funcition {
 		int IDcheck = ScannerUltis.inputInt2();
 		Method_Repository methodRepository = new Method_Repository();
 		List<ProjectTeam> listPjTeam = methodRepository.ProjectTeamInfor1(IDcheck);
-		if (listPjTeam != null) {
+		if (methodRepository.GetProjectbyID(IDcheck) != null) {
 			System.out.println("Thông tin ProjectTeam trên hệ thống");
 			String format1 = "| %-12d | %-12d | %-12s | %-12d | %-12s |%n";
 			System.out.format("+--------------+--------------+--------------+--------------+--------------+%n");
@@ -53,6 +55,28 @@ public class Method_Funcition {
 			System.err.println("Project chưa được khởi tạo.");
 		}
 	}
+	
+	public static void ProjectTeamInfor()
+			throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		System.out.println("Mời bạn nhập vào Name của project");
+		String PjName = ScannerUltis.inputString();
+		Method_Repository methodRepository = new Method_Repository();
+		List<ProjectTeam> listPjTeam = methodRepository.ProjectTeamInfor(PjName);
+		if (methodRepository.GetProjectbyName(PjName) != null) {
+			System.out.println("Thông tin ProjectTeam trên hệ thống");
+			String format1 = "| %-12d | %-12s | %-12d | %-12s | %-12d | %-12s |%n";
+			System.out.format("+--------------+--------------+--------------+--------------+--------------+--------------+%n");
+			System.out.format("| ProjectID    | PjName       | ManagerID    | MgName       | EmployeeID   | EpName       |%n");
+			System.out.format("+--------------+--------------+--------------+--------------+--------------+--------------+%n");
+			for (ProjectTeam projectTeam2 : listPjTeam) {
+				System.out.format(format1, projectTeam2.getProject(),projectTeam2.getProject1(), projectTeam2.getManager(),
+						projectTeam2.getManager1(), projectTeam2.getEmployee(), projectTeam2.getEmployee1());
+			}
+			System.out.format("+--------------+--------------+--------------+--------------+--------------+--------------+%n");
+		} else {
+			System.err.println("Project chưa được khởi tạo.");
+		}
+	}
 
 	public static void GetListEmployee()
 			throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
@@ -60,18 +84,16 @@ public class Method_Funcition {
 		List<Employee> listEp = methodRepository.GetListEmployee();
 		if (listEp != null) {
 			System.out.println("Thông tin Employee của Project");
-			String format1 = "| %-10d | %-12s | %-16s | %-12s | %-10s |%n";
-			System.out.format("+------------+--------------+------------------+--------------+------------+%n");
-			System.out.format("| EmployeeID | Fullname     | Email            | Password     | ProSkill   |%n");
-			System.out.format("+------------+--------------+------------------+--------------+------------+%n");
+			String format1 = "| %-10d | %-20s | %-25s | %-12s | %-10s |%n";
+			System.out.format("+------------+----------------------+---------------------------+--------------+------------+%n");
+			System.out.format("| EmployeeID | Fullname             | Email                     | Password     | ProSkill   |%n");
+			System.out.format("+------------+----------------------+---------------------------+--------------+------------+%n");
 			for (Employee employee : listEp) {
 				System.out.format(format1, employee.getId(), employee.getFullname(), employee.getEmail(),
 						employee.getPassword(), employee.getProskill());
 			}
-			System.out.format("+------------+--------------+------------------+--------------+------------+%n");
-		} else {
-			System.err.println("Employee chưa có thông tin trên hệ thống");
-		}
+			System.out.format("+------------+----------------------+---------------------------+--------------+------------+%n");
+		} 
 	}
 
 	public static void GetListManager()
@@ -80,17 +102,15 @@ public class Method_Funcition {
 		List<Manager> listMg = methodRepository.GetListManager();
 		if (listMg != null) {
 			System.out.println("Thông tin Manager trên hệ thống");
-			String format1 = "| %-10d | %-12s | %-16s | %-12s | %-10d |%n";
-			System.out.format("+------------+--------------+------------------+--------------+------------+%n");
-			System.out.format("| ManagerID  | Fullname     | Email            | Password     | ExplnYear  |%n");
-			System.out.format("+------------+--------------+------------------+--------------+------------+%n");
+			String format1 = "| %-10d | %-20s | %-25s | %-12s | %-10d |%n";
+			System.out.format("+------------+----------------------+---------------------------+--------------+------------+%n");
+			System.out.format("| ManagerID  | Fullname             | Email                     | Password     | ExplnYear  |%n");
+			System.out.format("+------------+----------------------+---------------------------+--------------+------------+%n");
 			for (Manager manager : listMg) {
 				System.out.format(format1, manager.getId(), manager.getFullname(), manager.getEmail(),
 						manager.getPassword(), manager.getExplnYear());
 			}
-			System.out.format("+------------+--------------+------------------+--------------+------------+%n");
-		} else {
-			System.err.println("Manager chưa có thông tin trên hệ thống.");
+			System.out.format("+------------+----------------------+---------------------------+--------------+------------+%n");
 		}
 	}
 
@@ -109,8 +129,6 @@ public class Method_Funcition {
 						project.getTeamSize());
 			}
 			System.out.format("+------------+--------------+------------------+------------+%n");
-		} else {
-			System.err.println("Project chưa có thông tin trên hệ thống.");
 		}
 	}
 
@@ -128,7 +146,6 @@ public class Method_Funcition {
 		if (methodRepository.CreateManager(fullname, email, password, explnYear)) {
 			System.out.println("Tạo mới thành công");
 		}
-
 	}
 
 	public static void CreateEmployee()
@@ -146,23 +163,18 @@ public class Method_Funcition {
 		if (methodRepository.CreateEmployee(fullname, email, password, proskill)) {
 			System.out.println("Tạo mới thành công");
 		}
-
 	}
 
 	public static String getProskill() {
 		while (true) {
 			switch (ScannerUltis.inputInt2()) {
 			case 1:
-
 				return "Dev";
 			case 2:
-
 				return "Test";
 			case 3:
-
 				return "Scrum Master";
 			case 4:
-
 				return "SQL";
 			default:
 				System.err.println("Mời chọn lại");
@@ -183,7 +195,6 @@ public class Method_Funcition {
 		if (methodRepository.CreateProject(name, chooseID, teamsize)) {
 			System.out.println("Tạo mới thành công");
 		}
-
 	}
 
 	public static int getManagerID() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
@@ -226,16 +237,16 @@ public class Method_Funcition {
 		}
 	}
 
-	private static void ManagerWorks() throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
+	public static void ManagerWorks() throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		while (true) {
 			System.out.println("Mời bạn lựa chọn chức năng");
 			System.out.println("+================ Lựa Chọn Chức Năng =====================+");
 			System.out.println("|              1: Create Project                          |");
 			System.out.println("|              2: Update Project                          |");
 			System.out.println("|              3: Delete Project                          |");
-			System.out.println("|              4: Getlist Project                         |");
-			System.out.println("|              5: Check Manager At Project                |");
-			System.out.println("|              6: Check ProjectTeam                       |");
+			System.out.println("|              4: Check Manager At Project                |");
+			System.out.println("|              5: Check ProjectTeam By ID                 |");
+			System.out.println("|              6: Check ProjectTeam By Name               |");
 			System.out.println("|              7: Thoát khỏi chương trình                 |");
 			System.out.println("+=========================================================+");
 			int menu = ScannerUltis.inputInt2();
@@ -250,13 +261,13 @@ public class Method_Funcition {
 
 				break;
 			case 4:
-				Method_Funcition.GetListProject();
-				break;
-			case 5:
 				Method_Funcition.GetAllListPJ();
 				break;
-			case 6:
+			case 5:
 				Method_Funcition.ProjectTeamInfor1();
+				break;
+			case 6:
+				Method_Funcition.ProjectTeamInfor();
 				break;
 			case 7:
 
@@ -273,21 +284,21 @@ public class Method_Funcition {
 		while (true) {
 			System.out.println("Mời bạn lựa chọn chức năng");
 			System.out.println("+================ Lựa Chọn Chức Năng =====================+");
-			System.out.println("|              1: Getlist Project                         |");
-			System.out.println("|              2: Check ManagerInfo At Project            |");
-			System.out.println("|              3: Check ProjectTeam                       |");
+			System.out.println("|              1: Check ProjectInfo                       |");
+			System.out.println("|              2: Check ProjectTeam By ID                 |");
+			System.out.println("|              3: Check ProjectTeam By Name               |");
 			System.out.println("|              4: Thoát khỏi chương trình                 |");
 			System.out.println("+=========================================================+");
 			int menu = ScannerUltis.inputInt2();
 			switch (menu) {
 			case 1:
-				Method_Funcition.GetListProject();
-				break;
-			case 2:
 				Method_Funcition.GetAllListPJ();
 				break;
-			case 3:
+			case 2:
 				Method_Funcition.ProjectTeamInfor1();
+				break;
+			case 3:
+				Method_Funcition.ProjectTeamInfor();
 				break;
 			case 4:
 

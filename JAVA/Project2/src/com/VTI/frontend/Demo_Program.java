@@ -19,7 +19,7 @@ public class Demo_Program {
 				Method_Funcition.Login();
 				break;
 			case 2:
-
+				System.out.println("Chương Trình Kết Thúc");
 				return;
 			default:
 				System.err.println("Mời chọn lại");
