@@ -2,7 +2,10 @@ package com.VTI.entity;
 
 public class FresherCandidate extends Candidate{
 	public String graduationRank;
-	
+	public enum Rank{
+		Excellence, Good, Fair, Poor
+	}
+	public Rank rank;
 	public FresherCandidate() {
 		
 	}
@@ -21,6 +24,14 @@ public class FresherCandidate extends Candidate{
 
 	public void setGraduationRank(String graduationRank) {
 		this.graduationRank = graduationRank;
+	}
+
+	public Rank getRank() {
+		return rank;
+	}
+
+	public void setRank(Rank rank) {
+		this.rank = rank;
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import javax.swing.text.AbstractDocument.BranchElement;
+
 public class ScannerUltis {
 	private static Scanner sc = new Scanner(System.in);
 
@@ -166,10 +168,10 @@ public class ScannerUltis {
 			flag = fullname.matches(ckeckname);
 			flag1 = fullname.matches(checkname1);
 			if (!flag) {
-				System.err.println("Tên không thể chứa số hoặc kí tự đặc biệt");
-				continue;
+				System.err.println("Tên chỉ bao gôm chữ cái. Mời nhập lại");
+				continue;		
 			}else if (!flag1) {
-				System.err.println("Tên không thể chứa số hoặc kí tự đặc biệt");
+				System.err.println("Tên chỉ bao gôm chữ cái. Mời nhập lại");
 				continue;
 			}else {
 				return fullname;

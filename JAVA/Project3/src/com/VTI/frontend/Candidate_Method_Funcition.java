@@ -3,6 +3,9 @@ package com.VTI.frontend;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.VTI.backend.datalayer.Method_Candidate;
 import com.VTI.backend.presentationlayer.Candidate_Method_ConTroller;
 import com.VTI.ultis.ScannerUltis;
 
@@ -49,8 +52,8 @@ public class Candidate_Method_Funcition {
 		String choose3 = getCategory2();
 		System.out.println("Mời bạn chọn Proskill: 1.Dev, 2.Test, 3.Scrum Master, 4.SQL.");
 		String choose1 = getProskill();
-		System.out.println("Mời bạn nhập ExplnYear (nhập vào 0 nếu bạn chưa có)");
-		int choose2 = ScannerUltis.inputInt2();
+		System.out.println("Mời bạn nhập ExplnYear ");
+		int choose2 = ScannerUltis.inputFunction(0, 10, "Chỉ nhập từ 0-10");
 		Candidate_Method_ConTroller controller = new Candidate_Method_ConTroller();
 		if (controller.createExperienceCandidate(firstname, lastname, phone, email, password, choose2, choose1,
 				choose3)) {

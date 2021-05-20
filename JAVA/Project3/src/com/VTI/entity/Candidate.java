@@ -1,6 +1,6 @@
 package com.VTI.entity;
 
-public abstract class Candidate {
+public class Candidate {
 	private int id;
 	private String FirstName;
 	private String LastName;

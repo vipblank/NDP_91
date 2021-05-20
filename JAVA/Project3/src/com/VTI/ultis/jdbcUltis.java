@@ -17,7 +17,7 @@ public class jdbcUltis {
 
 	public jdbcUltis() throws FileNotFoundException, IOException {
 		property = new Properties();
-		property.load(new FileInputStream("C:\\Users\\onii-chan\\eclipse-workspace\\Project1\\lib\\database.properties"));
+		property.load(new FileInputStream("C:\\Users\\onii-chan\\eclipse-workspace\\Project3\\lib\\database.properties"));
 	}
 
 	public void connnectionTestting() throws ClassNotFoundException, SQLException {
