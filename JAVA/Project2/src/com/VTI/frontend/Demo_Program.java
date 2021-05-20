@@ -16,7 +16,7 @@ public class Demo_Program {
 			int menu = ScannerUltis.inputInt2();
 			switch (menu) {
 			case 1:
-				Method_Funcition.Login();
+				Login_Funcition.Login();
 				break;
 			case 2:
 				System.out.println("Chương Trình Kết Thúc");
